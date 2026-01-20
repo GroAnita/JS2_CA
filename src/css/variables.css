@@ -1,0 +1,42 @@
+:root {
+  /* Base backgrounds */
+  --color-bg-main: #121212; /* App background */
+  --color-bg-surface: #1f1629; /* Cards, modals, panels */
+  --color-bg-elevated: #2a1f3a; /* Hovered cards / dropdowns */
+
+  /* Primary accents */
+  --color-primary: #c77dff; /* Main brand / CTA */
+  --color-primary-hover: #b66af2;
+  --color-secondary: #9ae66e; /* Secondary actions */
+  --color-highlight: #f2c94c; /* Highlights / badges */
+
+  /* Text colors */
+  --color-text-main: #ede6f7; /* Primary text */
+  --color-text-muted: #b9aec9; /* Subtle text */
+  --color-text-inverse: #121212; /* Text on light buttons */
+
+  /* Feedback states */
+  --color-error: #d6455d; /* Errors */
+  --color-success: #9ae66e; /* Success */
+  --color-warning: #f2c94c; /* Warnings */
+
+  /* Borders & dividers */
+  --color-border: #34284a;
+  --color-divider: rgba(237, 230, 247, 0.08);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.6);
+
+  /* UI helpers */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+
+  /* Fonts */
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}

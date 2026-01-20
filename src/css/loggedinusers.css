@@ -1,0 +1,15 @@
+.loggedinusers-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+.loggedinusers-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.loggedinusers-image {
+  margin: 0 1rem;
+}

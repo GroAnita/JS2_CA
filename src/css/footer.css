@@ -1,0 +1,11 @@
+.footer-section {
+  background: var(--color-bg-elevated);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+.footer-section p {
+  color: var(--color-text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+}

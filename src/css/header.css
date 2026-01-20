@@ -1,0 +1,18 @@
+.header-section {
+  background: var(--color-bg-elevated);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+.header-section h1 {
+  color: var(--color-primary);
+  margin: 0;
+  font-size: 2rem;
+  font-family: var(--font-heading);
+}
+.header-section p {
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
