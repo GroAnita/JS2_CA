@@ -1,3 +1,4 @@
+import "./css/styles.css";
 import { router } from "./router/router.js";
 
 function navigateTo(url) {

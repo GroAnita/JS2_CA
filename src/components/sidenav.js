@@ -1,33 +1,70 @@
 export default function SideMenu() {
-  return `
-    <aside class="side-menu">
-      <h2 class="side-menu-title">🕯️ Coven</h2>
+  const navItemClass = `
+    flex flex-col items-center gap-2
+    text-gray-300 opacity-80
+    hover:text-purple-400 hover:opacity-100
+    transition
+  `;
 
-      <nav class="side-menu-nav">
-       <span class="nav-links">
-        <div class="nav-icon"><img src="src/images/icon/grimoiregold.png" alt="Grimoire Icon" attribute="https://www.flaticon.com/free-icons/grimoire" title="grimoire icons"Grimoire icons created by Creative Stall Premium - Flaticon></div>
-        <a href="/" data-link data-tooltip="Newsfeed">Grimoire</a>
-        </span>
-        <span class="nav-links">
-        <div class="nav-icon">\u{1F52E} </div>
-        <a href="/" data-link data-tooltip="search">Scry</a>
-        </span>
-          <span class="nav-links">
-        <div class="nav-icon"> \u{1F408}\u{200D}\u{2B1B} </div>
-        <a href="/" data-link data-tooltip="your Profile">Coven Profile</a>
-        </span>
-          <span class="nav-links">
-        <div class="nav-icon">  \u{1F989} </div>
-        <a href="/" data-link data-tooltip="Friends">Familiars</a>
-        </span>
-        <span class="nav-links">
-        <div class="nav-icon">  \u{1F319}</div>
-        <a href="/" data-link data-tooltip="Groups">Covens</a>
-        </span>       
-           <span class="nav-links">
-        <div class="nav-icon"> <i class="fa-solid fa-arrow-right-to-bracket"></i></div>
-        <a href="/" data-link data-tooltip="Log in">Enter The Circle</a>
-        </span> 
+  const iconCircleClass = `
+    w-12 h-12
+    rounded-full
+    border-2 border-gray-300/60
+    flex items-center justify-center
+    transition
+    hover:shadow-[0_0_12px_rgba(199,125,255,0.4)]
+  `;
+
+  return `
+    <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
+    <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
+    <img src="/src/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+      <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
+
+      <nav class="flex flex-col gap-8">
+
+      <a href="/" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <span class="text-xs font-[Cinzel]">Grimoire</span>
+        </a>
+
+        <a href="/" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-crow"></i>
+          </div>
+          <span class="text-xs font-[Cinzel]">Familiars</span>
+        </a>
+
+        <a href="/" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-broom"></i>          </div>
+          <span class="text-xs font-[Cinzel]">Scry</span>
+        </a>
+
+        <a href="/" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-hat-wizard"></i>
+          </div>
+          <span class="text-xs font-[Cinzel]">Coven Profile</span>
+        </a>
+
+        <a href="/search" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-moon"></i>
+          </div>
+          <span class="text-xs font-[Cinzel]">Cast a Spell</span>
+        </a>
+
+
+        <a href="/search" data-link class="${navItemClass}">
+          <div class="${iconCircleClass}">
+            <i class="fa-solid fa-right-to-bracket"></i>
+          </div>
+          <span class="text-xs font-[Cinzel]">Enter the Circle</span>
+        </a>
+
       </nav>
     </aside>
   `;

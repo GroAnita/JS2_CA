@@ -4,7 +4,6 @@ import Contact from "../views/Contact.js";
 import Header from "../components/header.js";
 import Footer from "../components/footer.js";
 import SideNav from "../components/sidenav.js";
-import LoggedInUsers from "../components/loggedinusers.js";
 
 const routes = {
   "/": Home,
@@ -18,7 +17,6 @@ export function router() {
 
   document.getElementById("sidenav").innerHTML = SideNav();
   document.getElementById("header").innerHTML = Header();
-  document.getElementById("loggedInUsers").innerHTML = LoggedInUsers();
   document.getElementById("app").innerHTML = route();
   document.getElementById("footer").innerHTML = Footer();
 }

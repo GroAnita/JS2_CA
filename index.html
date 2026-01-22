@@ -25,13 +25,15 @@
     <link rel="stylesheet" href="src/css/loggedinusers.css" />
     <title>Hex & Chill</title>
   </head>
-  <body>
-    <div class="main-grid">
+  <body class="bg-[var(--color-bg-main)] text-gray-100 flex">
+    <div class="flex min-h-screen">
       <aside id="sidenav"></aside>
-      <header id="header"></header>
-      <div id="loggedInUsers"></div>
-      <div id="app"></div>
-      <footer id="footer"></footer>
+      <div class="flex-1 flex flex-col">
+        <header id="header"></header>
+        <div id="loggedInUsers"></div>
+        <div id="app"></div>
+        <footer id="footer"></footer>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
