@@ -11,11 +11,11 @@
           <figure >
            <div class="flex flex-row justify-evenly items-center mb-4 gap-4">
             <img class="h-56 rounded-md mb-2"
-              src="/images/protectionspell.jpg"
+              src="/JS2_CA/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             <img class="h-56 rounded-md mb-2"
-              src="/images/protectionspell.jpg"
+              src="/JS2_CA/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             </div>
@@ -83,7 +83,7 @@
             "
           >
             <img
-              src="/images/megibunadlite.jpg"
+              src="/JS2_CA/images/megibunadlite.jpg"
               alt="Active user"
               class="w-full h-full rounded-full object-cover"
             />
@@ -114,7 +114,7 @@
   `;return`
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
     <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+    <img src="/JS2_CA/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
       <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
 
       <nav class="flex flex-col gap-8">
