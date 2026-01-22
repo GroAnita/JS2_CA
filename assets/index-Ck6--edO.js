@@ -11,11 +11,11 @@
           <figure >
            <div class="flex flex-row justify-evenly items-center mb-4 gap-4">
             <img class="h-56 rounded-md mb-2"
-              src="src/images/protectionspell.jpg"
+              src="/src/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             <img class="h-56 rounded-md mb-2"
-              src="src/images/protectionspell.jpg"
+              src="/src/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             </div>
