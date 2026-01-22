@@ -18,7 +18,7 @@ export default function SideMenu() {
   return `
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
     <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="/src/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+    <img src="../src/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
       <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
 
       <nav class="flex flex-col gap-8">

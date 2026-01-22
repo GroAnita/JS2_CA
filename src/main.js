@@ -1,4 +1,8 @@
+import "./css/variables.css";
 import "./css/styles.css";
+import "./css/nav.css";
+import "./css/footer.css";
+import "./css/loggedinusers.css";
 import { router } from "./router/router.js";
 
 function navigateTo(url) {

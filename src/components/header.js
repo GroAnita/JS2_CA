@@ -25,7 +25,7 @@ export default function Header() {
             "
           >
             <img
-              src="/src/images/megibunadlite.jpg"
+              src="../src/images/megibunadlite.jpg"
               alt="Active user"
               class="w-full h-full rounded-full object-cover"
             />
