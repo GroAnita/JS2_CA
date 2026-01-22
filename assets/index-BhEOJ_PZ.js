@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const a of t)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function n(t){const a={};return t.integrity&&(a.integrity=t.integrity),t.referrerPolicy&&(a.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?a.credentials="include":t.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function i(t){if(t.ep)return;t.ep=!0;const a=n(t);fetch(t.href,a)}})();function l(){return`
+(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const r of s.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function n(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(t){if(t.ep)return;t.ep=!0;const s=n(t);fetch(t.href,s)}})();function l(){return`
     <section class="p-6 space-y-6">
 
       <h1 class="font-[Cinzel] text-purple-400 font-bold text-xl">
@@ -11,11 +11,11 @@
           <figure >
            <div class="flex flex-row justify-evenly items-center mb-4 gap-4">
             <img class="h-56 rounded-md mb-2"
-              src="/src/images/protectionspell.jpg"
+              src="/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             <img class="h-56 rounded-md mb-2"
-              src="/src/images/protectionspell.jpg"
+              src="/images/protectionspell.jpg"
               alt="LunaHex Illustration - Protection Spell"
             />
             </div>
@@ -83,7 +83,7 @@
             "
           >
             <img
-              src="../src/images/megibunadlite.jpg"
+              src="/images/megibunadlite.jpg"
               alt="Active user"
               class="w-full h-full rounded-full object-cover"
             />
@@ -104,7 +104,7 @@
     text-gray-300 opacity-80
     hover:text-purple-400 hover:opacity-100
     transition
-  `,s=`
+  `,a=`
     w-12 h-12
     rounded-full
     border-2 border-gray-300/60
@@ -114,40 +114,40 @@
   `;return`
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
     <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="../src/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+    <img src="/images/icon/witchicon.png" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
       <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
 
       <nav class="flex flex-col gap-8">
 
       <a href="/" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-book"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Grimoire</span>
         </a>
 
         <a href="/" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-crow"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Familiars</span>
         </a>
 
         <a href="/" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-broom"></i>          </div>
           <span class="text-xs font-[Cinzel]">Scry</span>
         </a>
 
         <a href="/" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-hat-wizard"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Coven Profile</span>
         </a>
 
         <a href="/search" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-moon"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Cast a Spell</span>
@@ -155,7 +155,7 @@
 
 
         <a href="/search" data-link class="${e}">
-          <div class="${s}">
+          <div class="${a}">
             <i class="fa-solid fa-right-to-bracket"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Enter the Circle</span>
@@ -163,4 +163,4 @@
 
       </nav>
     </aside>
-  `}const g={"/":l,"/about":c,"/contact":d};function o(){const e=window.location.pathname,s=g[e]||l;document.getElementById("sidenav").innerHTML=u(),document.getElementById("header").innerHTML=p(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=f()}function m(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),m(e.target.href))});window.addEventListener("popstate",o);o();
+  `}const g={"/":l,"/about":c,"/contact":d};function o(){const e=window.location.pathname,a=g[e]||l;document.getElementById("sidenav").innerHTML=u(),document.getElementById("header").innerHTML=p(),document.getElementById("app").innerHTML=a(),document.getElementById("footer").innerHTML=f()}function m(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),m(e.target.href))});window.addEventListener("popstate",o);o();
