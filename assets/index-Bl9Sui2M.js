@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))l(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&l(a)}).observe(document,{childList:!0,subtree:!0});function c(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function l(t){if(t.ep)return;t.ep=!0;const r=c(t);fetch(t.href,r)}})();const i="/JS2_CA/assets/protectionspell-B3fmzc5v.jpg";function n(){return`
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))o(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&o(a)}).observe(document,{childList:!0,subtree:!0});function c(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(t){if(t.ep)return;t.ep=!0;const r=c(t);fetch(t.href,r)}})();const i="/JS2_CA/assets/protectionspell-B3fmzc5v.jpg";function n(){return`
     <section class="p-6 space-y-6">
 
       <h1 class="font-[Cinzel] text-purple-400 font-bold text-xl text-center">
@@ -57,10 +57,10 @@
   `}function d(){return`
     <h1>Welcome to the About Page</h1>
     <p>This is the about page of our application.</p>
-  `}function p(){return`
+  `}function f(){return`
     <h1>Welcome to the Contact Page</h1>
     <p>This is the contact page of our application.</p>
-  `}const f="/JS2_CA/assets/storiesplaceholder-BEkCxyvR.png";function u(){return`
+  `}const p="/JS2_CA/assets/storiesplaceholder-BEkCxyvR.png";function u(){return`
     <section
       class="
         flex justify-center items-center gap-4
@@ -83,7 +83,7 @@
             "
           >
             <img
-              src="${f}"
+              src="${p}"
               alt="Active user"
               class="w-full h-full rounded-full object-cover"
             />
@@ -91,11 +91,11 @@
         </div>
       `).join("")}
     </section>
-  `}function g(){return`
+  `}function m(){return`
     <section class="footer-section">
     <p>&copy; 2026 Hex & Chill. All rights reserved.</p>
     </section>
-  `}const h="/JS2_CA/assets/witchicon-BgI6EGWp.png";function m(){const e=`
+  `}function h(){const e=`
     flex flex-col items-center gap-2
     text-gray-300 opacity-80
     hover:text-purple-400 hover:opacity-100
@@ -108,11 +108,41 @@
     transition
     hover:shadow-[0_0_12px_rgba(199,125,255,0.4)]
   `;return`
-    <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
-    <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="${h}" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+    <aside
+  class="
+    fixed bottom-0 left-0 z-50
+    w-full h-16
+    bg-[var(--color-bg-surface)]
+    border-t border-gray-700
 
-      <nav class="flex flex-col gap-8">
+    flex justify-around items-center
+
+    md:static
+    md:w-64
+    md:h-screen
+    md:flex-col
+    md:justify-start
+    md:gap-8
+    md:px-6
+    md:py-8
+    md:border-t-0
+    md:border-r
+  "
+>
+    <h1 class="hidden md:block font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">
+  Hex & Chill
+</h1>
+
+<img
+  src="./src/images/icon/witchicon.png"
+  class="hidden md:block w-20 h-20 mx-auto mb-4"
+/>
+
+
+   <nav
+  class="
+    flex gap-2
+    md:flex-col md:gap-8">  
 
       <a href="/" data-link class="${e}">
           <div class="${s}">
@@ -141,7 +171,7 @@
           <span class="text-xs font-[Cinzel]">Coven Profile</span>
         </a>
 
-        <a href="/search" data-link class="${e}">
+        <a href="/search" data-link class="hidden md:flex ${e}">
           <div class="${s}">
             <i class="fa-solid fa-pen-nib"></i>
           </div>
@@ -149,7 +179,7 @@
         </a>
 
 
-        <a href="/search" data-link class="${e}">
+        <a href="/search" data-link class="hidden md:flex ${e}">
           <div class="${s}">
             <i class="fa-solid fa-right-to-bracket"></i>
           </div>
@@ -158,7 +188,12 @@
 
       </nav>
     </aside>
-  `}const x="/JS2_CA/assets/friendsplaceholder-BmLjllju.png";function b(){return`
+    <button class="fixed top-4 left-4 z-50 w-12 h-12
+    rounded-full
+    bg-purple-400 text-white
+    shadow-lg md:hidden" aria-label="Cast a spell">
+    >spell</button>
+  `}const g="/JS2_CA/assets/friendsplaceholder-BmLjllju.png";function x(){return`
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-l border-gray-700">
 
       <h1 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">Familiars</h1>
@@ -185,7 +220,7 @@
                  "
                >
                  <img
-                   src="${x}"
+                   src="${g}"
                    alt="Active user"
                    class="w-full h-full rounded-full object-cover"
                  />
@@ -194,4 +229,4 @@
            `).join("")}
          </section>
     </aside>
-  `}const v={"/":n,"/about":d,"/contact":p};function o(){const e=window.location.pathname,s=v[e]||n;document.getElementById("sidenav").innerHTML=m(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=g(),document.getElementById("sidenavRight").innerHTML=b()}function y(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),y(e.target.href))});window.addEventListener("popstate",o);o();
+  `}const b={"/":n,"/about":d,"/contact":f};function l(){const e=window.location.pathname,s=b[e]||n;document.getElementById("sidenav").innerHTML=h(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=m(),document.getElementById("sidenavRight").innerHTML=x()}function v(e){history.pushState(null,null,e),l()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),v(e.target.href))});window.addEventListener("popstate",l);l();
