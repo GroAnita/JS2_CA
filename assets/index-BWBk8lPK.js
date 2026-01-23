@@ -1,7 +1,7 @@
 (function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))l(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&l(a)}).observe(document,{childList:!0,subtree:!0});function c(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function l(t){if(t.ep)return;t.ep=!0;const r=c(t);fetch(t.href,r)}})();const i="/JS2_CA/assets/protectionspell-B3fmzc5v.jpg";function n(){return`
     <section class="p-6 space-y-6">
 
-      <h1 class="font-[Cinzel] text-purple-400 font-bold text-xl">
+      <h1 class="font-[Cinzel] text-purple-400 font-bold text-xl text-center">
         Spellcasting Feed
       </h1>
 
@@ -91,11 +91,11 @@
         </div>
       `).join("")}
     </section>
-  `}function h(){return`
+  `}function g(){return`
     <section class="footer-section">
     <p>&copy; 2026 Hex & Chill. All rights reserved.</p>
     </section>
-  `}const g="/JS2_CA/assets/witchicon-BgI6EGWp.png";function m(){const e=`
+  `}const h="/JS2_CA/assets/witchicon-BgI6EGWp.png";function m(){const e=`
     flex flex-col items-center gap-2
     text-gray-300 opacity-80
     hover:text-purple-400 hover:opacity-100
@@ -110,8 +110,7 @@
   `;return`
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
     <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="${g}" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
-      <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
+    <img src="${h}" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
 
       <nav class="flex flex-col gap-8">
 
@@ -131,7 +130,7 @@
 
         <a href="/" data-link class="${e}">
           <div class="${s}">
-            <i class="fa-solid fa-broom"></i>          </div>
+            <i class="fa-solid fa-magnifying-glass"></i>         </div>
           <span class="text-xs font-[Cinzel]">Scry</span>
         </a>
 
@@ -144,7 +143,7 @@
 
         <a href="/search" data-link class="${e}">
           <div class="${s}">
-            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-pen-nib"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Cast a Spell</span>
         </a>
@@ -195,4 +194,4 @@
            `).join("")}
          </section>
     </aside>
-  `}const v={"/":n,"/about":d,"/contact":p};function o(){const e=window.location.pathname,s=v[e]||n;document.getElementById("sidenav").innerHTML=m(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=h(),document.getElementById("sidenavRight").innerHTML=b()}function y(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),y(e.target.href))});window.addEventListener("popstate",o);o();
+  `}const v={"/":n,"/about":d,"/contact":p};function o(){const e=window.location.pathname,s=v[e]||n;document.getElementById("sidenav").innerHTML=m(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=g(),document.getElementById("sidenavRight").innerHTML=b()}function y(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),y(e.target.href))});window.addEventListener("popstate",o);o();
