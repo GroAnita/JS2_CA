@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const a of t)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function c(t){const a={};return t.integrity&&(a.integrity=t.integrity),t.referrerPolicy&&(a.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?a.credentials="include":t.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function i(t){if(t.ep)return;t.ep=!0;const a=c(t);fetch(t.href,a)}})();const l="/JS2_CA/assets/protectionspell-B3fmzc5v.jpg";function n(){return`
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))l(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&l(a)}).observe(document,{childList:!0,subtree:!0});function c(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function l(t){if(t.ep)return;t.ep=!0;const r=c(t);fetch(t.href,r)}})();const i="/JS2_CA/assets/protectionspell-B3fmzc5v.jpg";function n(){return`
     <section class="p-6 space-y-6">
 
       <h1 class="font-[Cinzel] text-purple-400 font-bold text-xl">
@@ -11,11 +11,11 @@
           <figure >
            <div class="flex flex-row justify-evenly items-center mb-4 gap-4">
             <img class="h-56 rounded-md mb-2"
-              src="${l}"
+              src="${i}"
               alt="LunaHex Illustration - Protection Spell"
             />
             <img class="h-56 rounded-md mb-2"
-              src="${l}"
+              src="${i}"
               alt="LunaHex Illustration - Protection Spell"
             />
             </div>
@@ -63,7 +63,7 @@
   `}const f="/JS2_CA/assets/storiesplaceholder-BEkCxyvR.png";function u(){return`
     <section
       class="
-        flex items-center gap-4
+        flex justify-center items-center gap-4
         px-6 py-4
         overflow-x-auto
         border-b border-gray-700
@@ -93,9 +93,9 @@
     </section>
   `}function h(){return`
     <section class="footer-section">
-    <p>&copy; 2024 Hex & Chill. All rights reserved.</p>
+    <p>&copy; 2026 Hex & Chill. All rights reserved.</p>
     </section>
-  `}const m="/JS2_CA/assets/witchicon-BgI6EGWp.png";function g(){const e=`
+  `}const g="/JS2_CA/assets/witchicon-BgI6EGWp.png";function m(){const e=`
     flex flex-col items-center gap-2
     text-gray-300 opacity-80
     hover:text-purple-400 hover:opacity-100
@@ -110,7 +110,7 @@
   `;return`
     <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-r border-gray-700">
     <h1 class="font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">Hex & Chill</h1>
-    <img src="${m}" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
+    <img src="${g}" alt="Hex & Chill Logo" class="w-20 h-20 mx-auto mb-4"/>
       <h2 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">🕯️ Coven</h2>
 
       <nav class="flex flex-col gap-8">
@@ -159,4 +159,40 @@
 
       </nav>
     </aside>
-  `}const x={"/":n,"/about":d,"/contact":p};function o(){const e=window.location.pathname,s=x[e]||n;document.getElementById("sidenav").innerHTML=g(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=h()}function b(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),b(e.target.href))});window.addEventListener("popstate",o);o();
+  `}const x="/JS2_CA/assets/friendsplaceholder-BmLjllju.png";function b(){return`
+    <aside class="hidden md:flex w-64 flex-col bg-[var(--color-bg-surface)] px-6 py-8 border-l border-gray-700">
+
+      <h1 class="font-[Cinzel] mb-10 text-xl mx-auto font-semibold text-purple-400">Familiars</h1>
+
+      <section
+           class="
+             flex-col items-center gap-4
+             px-6 py-4
+             overflow-x-auto
+             border-b border-gray-700
+             bg-[var(--color-bg-surface)]
+           "
+         >
+           ${Array(6).fill().map(()=>`
+             <div class="flex flex-col items-center gap-1 shrink-0">
+               <div
+                 class="
+                   w-24 h-24 
+                   rounded-full
+                   border-2 border-gray-300/70
+                   p-0.5
+                   hover:border-purple-400
+                   transition mb-4
+                 "
+               >
+                 <img
+                   src="${x}"
+                   alt="Active user"
+                   class="w-full h-full rounded-full object-cover"
+                 />
+               </div>
+             </div>
+           `).join("")}
+         </section>
+    </aside>
+  `}const v={"/":n,"/about":d,"/contact":p};function o(){const e=window.location.pathname,s=v[e]||n;document.getElementById("sidenav").innerHTML=m(),document.getElementById("header").innerHTML=u(),document.getElementById("app").innerHTML=s(),document.getElementById("footer").innerHTML=h(),document.getElementById("sidenavRight").innerHTML=b()}function y(e){history.pushState(null,null,e),o()}document.addEventListener("click",e=>{e.target.matches("a[data-link]")&&(e.preventDefault(),y(e.target.href))});window.addEventListener("popstate",o);o();
