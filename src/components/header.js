@@ -1,8 +1,10 @@
+import historyUser from "/src/images/storiesplaceholder.png";
+
 export default function Header() {
   return `
     <section
       class="
-        flex items-center gap-4
+        flex justify-center items-center gap-4
         px-6 py-4
         overflow-x-auto
         border-b border-gray-700
@@ -16,7 +18,7 @@ export default function Header() {
         <div class="flex flex-col items-center gap-1 shrink-0">
           <div
             class="
-              w-14 h-14
+              w-28 h-28 
               rounded-full
               border-2 border-gray-300/70
               p-0.5
@@ -25,15 +27,11 @@ export default function Header() {
             "
           >
             <img
-              src="/images/megibunadlite.jpg"
+              src="${historyUser}"
               alt="Active user"
               class="w-full h-full rounded-full object-cover"
             />
           </div>
-
-          <span class="text-xs text-gray-400">
-            Coven
-          </span>
         </div>
       `,
         )

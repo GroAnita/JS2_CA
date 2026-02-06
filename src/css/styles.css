@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.5rem;
-  color: var(--color-text-muted);
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
