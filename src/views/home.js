@@ -9,6 +9,9 @@ export default function Home() {
         Spellcasting Feed
       </h1>
 
+      <div id="posts" class="space-y-6">
+      </div>
+
       <article class="relative border border-gray-700 rounded-lg p-4 bg-[var(--color-bg-surface)] shadow-sm w-96 mx-auto">
         <i class="fa-solid fa-pen-to-square absolute top-3 right-3 text-gray-400 hover:text-purple-400 cursor-pointer transition"></i>
         <div class="border-b border-gray-700 pb-4">

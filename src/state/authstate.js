@@ -17,7 +17,7 @@ export function setAuthState(authData) {
 //clearing the auth state when logging out
 export function clearAuthState() {
   authState = null;
-  removeAuthFromStorage();
+  localStorage.removeItem(AUTH_STORAGE_KEY);
 }
 
 //Getting the full auth state
@@ -25,43 +25,37 @@ export function getAuthState() {
   if (authState) {
     return authState;
   }
-  if (!authState) {
-    const stored = localStorage.getItem(AUTH_STORAGE_KEY);
-    if (!stored) {
-      return null;
-    }
 
-    try {
-      authState = JSON.parse(stored);
-      return authState;
-    } catch {
-      return null;
-    }
-  }
-  if (authState?.expiresAt && Date.now() > authState.expiresAt) {
-    clearAuthState();
+  const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+  if (!stored) {
     return null;
   }
-  return authState;
+
+  try {
+    authState = JSON.parse(stored);
+    return authState;
+  } catch {
+    return null;
+  }
 }
 
 //To check if user is logged in
 export function isLoggedIn() {
-  return Boolean(getAuthState());
+  return Boolean(getAuthToken());
 }
 
 //getting the logged in user info
 export function getCurrentUser() {
   const state = getAuthState();
-  return state?.user || null;
+  if (!state) return null;
+  return {
+    username: state.name,
+    email: state.email,
+  };
 }
 
 //And get the token from auth state
 export function getAuthToken() {
   const state = getAuthState();
-  return state?.token || null;
-}
-
-export function removeAuthFromStorage() {
-  localStorage.removeItem(AUTH_STORAGE_KEY);
+  return state?.accessToken || null;
 }

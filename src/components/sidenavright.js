@@ -1,5 +1,6 @@
-import friendsUser from "/src/images/friendsplaceholder.png";
-export default function SideMenuRight() {
+import friendsUser from '/src/images/friendsplaceholder.png';
+
+export default function SideMenuRight(profiles = []) {
   const navItemClass = `
     flex flex-col items-center gap-2
     text-gray-300 opacity-80
@@ -30,11 +31,10 @@ export default function SideMenuRight() {
              bg-[#121212] 
            "
          >
-           ${Array(6)
-             .fill()
+           ${profiles
              .map(
-               () => `
-             <div class="flex flex-col items-center gap-1 shrink-0">
+               (profile) => `
+             <div class="flex flex-col items-center gap-3 shrink-0">
                <div
                  class="
                    w-24 h-24 
@@ -42,19 +42,20 @@ export default function SideMenuRight() {
                    border-2 border-gray-300/70
                    p-0.5
                    hover:border-purple-400
-                   transition mb-4
+                   transition mb-4 mt-6
                  "
                >
                  <img
-                   src="${friendsUser}"
+                   src="${profile.avatar?.url || friendsUser}"
                    alt="Active user"
                    class="w-full h-full rounded-full object-cover"
                  />
+                 <span class="text-xs font-[Cinzel] mt-4  text-gray-300">${profile.name}</span>
                </div>
              </div>
-           `,
+           `
              )
-             .join("")}
+             .join('')}
          </section>
     </aside>
   `;

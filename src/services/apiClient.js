@@ -8,6 +8,7 @@ export async function apiClient(endpoint, options = {}) {
     const apiKey = localStorage.getItem('apiKey');
     const accessToken = getAuthToken();
 
+    console.log('API CLIENT TOKEN:', accessToken);
     const headers = { 'Content-Type': 'application/json', ...options.headers };
 
     if (apiKey) {

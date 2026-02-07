@@ -12,8 +12,12 @@ import { apiClient } from './apiClient';
  */
 
 export async function createPost(postData) {
-  return await apiClient('sosial/posts', {
+  return await apiClient('social/posts', {
     method: 'POST',
     body: JSON.stringify(postData),
   });
+}
+
+export async function fetchPosts(params = '') {
+  return await apiClient(`/social/posts?_author=true&_comments=true${params}`);
 }

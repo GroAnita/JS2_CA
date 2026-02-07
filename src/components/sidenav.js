@@ -39,9 +39,6 @@ export default function SideMenu() {
     md:border-r
   "
 >
-    <h1 class="hidden md:block font-[Cinzel] text-2xl font-bold text-purple-400 mb-6 mx-auto">
-  Hex & Chill
-</h1>
 
 <img
   src="${witchIcon}"
@@ -81,14 +78,17 @@ export default function SideMenu() {
           <span class="text-xs font-[Cinzel]">Coven Profile</span>
         </a>
 
-        <a href="" data-open-create-post class="hidden md:flex ${navItemClass}">
+        <button 
+        type="button" 
+        data-open-create-post class="${navItemClass} bg-transparent">
           <div class="${iconCircleClass}">
             <i class="fa-solid fa-pen-nib"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Cast a Spell</span>
-        </a>
+        </button>
 
-        <button type="button" 
+        <button 
+        type="button" 
         data-open-login-modal
         data-auth="logged-out"
         class="${navItemClass} bg-transparent">

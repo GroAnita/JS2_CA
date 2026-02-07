@@ -8,9 +8,14 @@ import LoginModal, { initLoginModal } from './components/loginmodal.js';
 import { loadAuthFromStorage } from './utils/authstorage.js';
 import { updateAuthUI } from './ui/authui.js';
 import { setAuthState } from './state/authstate.js';
+import { logoutUser } from './services/authenticationService.js';
 //import { loadAuthFromStorage } from "./utils/authStorage.js";
-//import { setAuthState } from "./state/authState.js";
+import { getAuthState } from './state/authstate.js';
 //import { updateAuthUI } from "./ui/authUI.js";
+
+if (!localStorage.getItem('apiKey')) {
+  localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
+}
 
 function navigateTo(url) {
   history.pushState(null, null, url);
@@ -18,6 +23,14 @@ function navigateTo(url) {
 }
 
 document.addEventListener('click', (e) => {
+  // logout
+  if (e.target.closest('#logout-button')) {
+    e.preventDefault();
+    logoutUser();
+    navigateTo('/');
+    return;
+  }
+
   const link = e.target.closest('a[data-link]');
   if (link) {
     e.preventDefault();
@@ -44,4 +57,5 @@ export function initAuth() {
 
 initAuth(); //initializing the authentication state
 //the initial call to set up the correct view
+getAuthState(); //just to check if we can get the auth state on page load, for debugging
 router();
