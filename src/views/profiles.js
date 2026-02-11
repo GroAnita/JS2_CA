@@ -4,7 +4,6 @@ export default function Profiles() {
     <h1 class="text-2xl font-[Cinzel] text-purple-400 mb-4 text-center">
       Coven Profiles
     </h1>
-
     <p class="text-gray-400 mb-6 text-center">
       Meet the witches of our coven and discover their magical tales.
     </p>
@@ -14,3 +13,5 @@ export default function Profiles() {
   </section>
     `;
 }
+
+document.title = 'Hex & Chill - Coven Profiles';

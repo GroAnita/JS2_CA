@@ -12,7 +12,7 @@ import { apiClient } from './apiClient';
  */
 
 export async function createPost(postData) {
-  return await apiClient('social/posts', {
+  return await apiClient('/social/posts', {
     method: 'POST',
     body: JSON.stringify(postData),
   });

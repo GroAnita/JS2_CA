@@ -1,5 +1,3 @@
-import historyUser from '/src/images/storiesplaceholder.png';
-
 export default function Header() {
   return `
     <header

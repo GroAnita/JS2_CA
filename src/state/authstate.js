@@ -12,12 +12,15 @@ const AUTH_STORAGE_KEY = 'authUser';
 export function setAuthState(authData) {
   authState = authData;
   localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authData));
+  console.log('Auth state updated:', 'auth:changed DISPATCHED');
+  document.dispatchEvent(new Event('auth:changed'));
 }
 
 //clearing the auth state when logging out
 export function clearAuthState() {
   authState = null;
   localStorage.removeItem(AUTH_STORAGE_KEY);
+  document.dispatchEvent(new Event('auth:changed'));
 }
 
 //Getting the full auth state

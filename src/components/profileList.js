@@ -1,4 +1,6 @@
-export function renderProfiles(profiles) {
+import { getRandomAvatar } from '../services/unsplashService.js';
+
+export async function renderProfiles(profiles) {
   const container = document.getElementById('profiles-container');
 
   if (!container) {
@@ -12,12 +14,13 @@ export function renderProfiles(profiles) {
     return;
   }
 
-  container.innerHTML = profiles
-    .map(
-      (profile) => `
+  container.innerHTML = await Promise.all(
+    profiles
+      .map(
+        async (profile) => `
     <div class="bg-white rounded-lg shadow p-4">
       <img 
-        src="${profile.avatar?.url || '/placeholder-avatar.png'}" 
+        src="${profile.avatar?.url || (await getRandomAvatar())}" 
         alt="${profile.name}"
         class="w-16 h-16 rounded-full mx-auto mb-2"
       />
@@ -29,6 +32,7 @@ export function renderProfiles(profiles) {
       </div>
     </div>
   `
-    )
-    .join('');
+      )
+      .join('')
+  );
 }

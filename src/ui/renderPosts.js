@@ -1,18 +1,64 @@
-export function renderPosts(posts) {
+import { getRandomPostImage } from '../services/unsplashService.js';
+import { getFollowingList } from '../state/followState.js';
+import { getCurrentUser } from '../state/authstate.js';
+
+export async function renderPosts(posts) {
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
-  postsContainer.innerHTML = posts
-    .map(
-      (post) => `
-        <article class="border border-gray-700 rounded-lg p-4 bg-[var(--color-bg-surface)] shadow-sm w-96 mx-auto">
+  const followingList = getFollowingList();
+  const currentUser = getCurrentUser();
+  const postHtmlArray = await Promise.all(
+    posts.slice(0, 6).map(async (post) => {
+      const isFollowing = followingList.some(
+        (user) => user.name === post.author?.name
+      );
+      const isOwnPost =
+        currentUser && post.author?.name === currentUser.username;
+      const image =
+        post.media?.url ||
+        (await getRandomPostImage(post.id, post.tags?.[0] || 'fantasy'));
+
+      return `
+      
+        <article class="border border-gray-700 rounded-lg p-4 bg-[var(--color-bg-surface)] shadow-sm w-96 mx-auto break-words">
+        <div>
+        <img
+          src="${image}"
+          alt="Avatar of ${post.author?.name || 'Unknown'}"
+          class="h-120 w-120 mb-2 object-cover"
+        />
+        </div>
+        <div class="flex items-center justify-between">
           <h3 class="text-lg font-[Cinzel] font-semibold text-purple-500">
             🕯️ ${post.title || 'Unknown'}
           </h3>
+          <i class="fa-regular fa-thumbs-up cursor-pointer"></i>
+          
+        </div>
               <hr class="my-4 border-gray-700"/>
-              <h4 class="text-sm font-[Cinzel] text-gray-400 mb-2">
+              <div class="flex justify-between items-start gap-2">
+              <a href="/profiles/${post.author?.name || 'Unknown'}" data-link><h4 class="text-sm font-[Cinzel] text-gray-400 mb-2">
                 Posted by ${post.author?.name || 'Unknown'} on ${new Date(post.created).toLocaleDateString()}
-              </h4>
+              </h4></a>
+              <div 
+              data-follow-container class="${isOwnPost ? 'hidden' : ''}">
+              <button
+              type="button"
+              data-auth="follow"
+              data-username="${post.author?.name}"
+              class="${isFollowing ? 'hidden' : ''} text-sm text-purple-400 w-20 h-6 border border-purple-400 rounded hover:bg-purple-400 hover:text-white transition">
+            Follow
+          </button>
+          <button
+          type="button"
+          data-auth="followed"
+          data-username="${post.author?.name}"
+          class="${isFollowing ? '' : 'hidden'} text-sm text-purple-400 w-20 h-6 border border-purple-400 rounded hover:bg-purple-400 hover:text-white transition">
+            Unfollow
+          </button>
+          </div>
+              </div>
           <p class="font-[Inter] text-gray-300 mt-2">
             ${post.body}
           </p>
@@ -50,7 +96,9 @@ export function renderPosts(posts) {
            </div>
           
         </article>
-      `
-    )
-    .join('');
+      `;
+    })
+  );
+
+  postsContainer.innerHTML = postHtmlArray.join('');
 }

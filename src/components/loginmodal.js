@@ -119,11 +119,7 @@ export function initLoginModal() {
 
     try {
       // Attempting to log in the user
-      const data = await loginUser({ email, password });
-
-      // Dispatching a custom event with the authentication data
-      document.dispatchEvent(new CustomEvent('auth:login', { detail: data }));
-
+      await loginUser({ email, password });
       // Closes the modal by hiding it
       modal.classList.add('hidden');
     } catch (error) {

@@ -5,15 +5,13 @@ const BASE_URL = 'https://v2.api.noroff.dev';
 
 export async function apiClient(endpoint, options = {}) {
   try {
-    const apiKey = localStorage.getItem('apiKey');
     const accessToken = getAuthToken();
 
-    console.log('API CLIENT TOKEN:', accessToken);
-    const headers = { 'Content-Type': 'application/json', ...options.headers };
-
-    if (apiKey) {
-      headers['X-Noroff-API-Key'] = apiKey;
-    }
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Noroff-API-Key': import.meta.env.VITE_NOROFF_API_KEY,
+      ...options.headers,
+    };
 
     if (accessToken) {
       headers['Authorization'] = `Bearer ${accessToken}`;

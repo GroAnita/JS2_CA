@@ -3,6 +3,7 @@ import { isLoggedIn, getCurrentUser } from '../state/authstate.js';
 // ui/show and hide UI based on auth state , are you logged in or out?
 
 export function updateAuthUI() {
+  console.log('updateAuthUI called');
   const loggedIn = isLoggedIn();
   const user = getCurrentUser();
 
