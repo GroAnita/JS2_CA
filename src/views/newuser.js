@@ -1,4 +1,4 @@
-import NewUserForm from "../components/newuserform.js";
+import NewUserForm from '../ui/newuserform.js';
 
 export default function NewUser() {
   return `
@@ -23,4 +23,4 @@ export default function NewUser() {
   `;
 }
 
-document.title = "Hex & Chill - Join the Coven";
+document.title = 'Hex & Chill - Join the Coven';

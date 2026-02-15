@@ -71,12 +71,15 @@ export default function SideMenu() {
           <span class="text-xs font-[Cinzel]">Scry</span>
         </a>
 
-        <a href="/" data-link class="${navItemClass}">
+        <button 
+        type="button" 
+        data-open-own-profile
+        class="${navItemClass} bg-transparent">
           <div class="${iconCircleClass}">
             <i class="fa-solid fa-hat-wizard"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Coven Profile</span>
-        </a>
+        </button>
 
         <button 
         type="button" 

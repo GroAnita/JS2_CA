@@ -19,5 +19,11 @@ export async function createPost(postData) {
 }
 
 export async function fetchPosts(params = '') {
-  return await apiClient(`/social/posts?_author=true&_comments=true${params}`);
+  return await apiClient(
+    `/social/posts?_author=true&_comments=true&_sort=created&_order=desc${params}`
+  );
+}
+
+export async function fetchSinglePost(postId) {
+  return await apiClient(`/social/posts/${postId}?_author=true&_comments=true`);
 }

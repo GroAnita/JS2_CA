@@ -22,11 +22,66 @@ const iconCircleClass = `
     transition
     hover:shadow-[0_0_12px_rgba(199,125,255,0.4)]
   `;
+
+let page = 0;
+const LIMIT = 6;
+let isLastPage = false;
+let isLoading = false;
+
+async function loadMorePosts(append = false) {
+  if (isLoading || isLastPage) return;
+  isLoading = true;
+  const loadMoreButton = document.getElementById('load-more-posts');
+  if (loadMoreButton) loadMoreButton.textContent = 'Loading...';
+
+  try {
+    const response = await fetchPosts(`&page=${page}&limit=${LIMIT}`);
+    const posts = response.data;
+    if (!posts.length) {
+      loadMoreButton?.remove();
+      isLoading = false;
+      return;
+    }
+
+    await renderPosts(posts, { append });
+    if (posts.length < LIMIT) {
+      isLastPage = true;
+      loadMoreButton?.remove();
+    } else {
+      page++;
+    }
+  } catch (error) {
+    console.error('Failed to load more posts:', error);
+    showToast('Failed to load more posts. Please try again.', 'error');
+  }
+  if (loadMoreButton) loadMoreButton.textContent = 'Load More';
+  isLoading = false;
+}
+
+function createLoadMoreButton() {
+  if (document.getElementById('load-more-posts')) return;
+  const app = document.getElementById('app');
+  const button = document.createElement('button');
+  button.id = 'load-more-posts';
+  button.textContent = 'Load More';
+  button.className = `
+    mt-6 px-4 py-2 rounded-md border border-gray-300/60 hover:border-purple-400 transition
+    ${navItemClass}
+    bg-transparent
+    mx-auto mb-10
+  `;
+  button.addEventListener('click', () => loadMorePosts(true));
+  app.appendChild(button);
+}
+
 export async function initHome() {
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
   if (!isLoggedIn()) {
+    page = 1;
+    isLastPage = false;
+    isLoading = false;
     postsContainer.innerHTML = `   <section class="p-6 space-y-6">
       <div>
       <img
@@ -56,34 +111,26 @@ Explore the latest posts from our coven, discover new profiles, and let your mag
           <span class="text-xs font-[Cinzel]">Enter the Circle</span>
         </button>
  </section>`;
-    console.warn('User not logged in, skipping post fetch');
-    return {
-      profiles: [],
-    };
+    document.getElementById('load-more-posts')?.remove();
+    return;
   }
-  postsContainer.innerHTML = ''; // Clear any existing content while loading
-  const currentUser = getCurrentUser();
 
-  if (currentUser) {
-    const profile = await apiClient(
-      `/social/profiles/${currentUser.username}?_following=true`
-    );
-    setFollowingList(profile.data.following || []);
-  }
+  postsContainer.innerHTML = '';
+  page = 1;
+  isLastPage = false;
   try {
-    const [postsResponse, profilesResponse] = await Promise.all([
-      fetchPosts(),
-      fetchProfiles(),
-    ]);
+    const currentUser = getCurrentUser();
 
-    console.log('first post:', postsResponse.data[0]);
-    await renderPosts(postsResponse.data);
+    if (currentUser) {
+      const profile = await apiClient(
+        `/social/profiles/${currentUser.username}?_following=true`
+      );
+      setFollowingList(profile.data.following || []);
+    }
 
-    console.log('profiles loaded:', profilesResponse.data);
+    await Promise.all([loadMorePosts(false), fetchProfiles()]);
 
-    return {
-      profiles: profilesResponse.data,
-    };
+    createLoadMoreButton();
   } catch (error) {
     console.error('Failed to fetch posts:', error);
     if (error.message.includes('API key')) {
@@ -94,8 +141,5 @@ Explore the latest posts from our coven, discover new profiles, and let your mag
     } else {
       showToast('Failed to load posts. Please try again.', 'error');
     }
-    return {
-      profiles: [],
-    };
   }
 }

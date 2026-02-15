@@ -1,18 +1,22 @@
 import { getRandomPostImage } from '../services/unsplashService.js';
 import { getFollowingList } from '../state/followState.js';
 import { getCurrentUser } from '../state/authstate.js';
+import { deletePost } from '../services/postFetchService.js';
+import showToast from './showToast.js';
+import { router } from '../router/router.js';
 
-export async function renderPosts(posts) {
+export async function renderPosts(posts, { append = false } = {}) {
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
   const followingList = getFollowingList();
   const currentUser = getCurrentUser();
   const postHtmlArray = await Promise.all(
-    posts.slice(0, 6).map(async (post) => {
+    posts.map(async (post) => {
       const isFollowing = followingList.some(
         (user) => user.name === post.author?.name
       );
+      const isOwner = currentUser?.username === post.author?.name;
       const isOwnPost =
         currentUser && post.author?.name === currentUser.username;
       const image =
@@ -21,7 +25,26 @@ export async function renderPosts(posts) {
 
       return `
       
-        <article class="border border-gray-700 rounded-lg p-4 bg-[var(--color-bg-surface)] shadow-sm w-96 mx-auto break-words">
+        <article data-post="${post.id}" class=" post-card border border-gray-700 rounded-lg p-4 bg-[var(--color-bg-surface)] shadow-sm w-96 mx-auto break-words ">
+        ${
+          isOwner
+            ? `
+          <div class="relative flex justify-end">
+          <button
+          class="post-menu-toggle text-gray-400 hover:text-white"
+          data-post-id="${post.id}">
+          <i class="fa-solid fa-ellipsis"></i>
+          </button>
+          <div class="post-menu hidden absolute right-0 mt-2 w-32 bg-gray-800 border border-gray-700 rounded shadow-lg z-10"
+          data-menu-for="${post.id}">
+          <button data-post-id="${post.id}" class="edit-post w-full text-left px-4 py-2 hover:bg-gray-700">Edit</button>
+          <button class="delete-post w-full text-left px-4 py-2 hover:bg-gray-700" data-post-id="${post.id}">Delete</button>
+          </div>
+          </div>
+        `
+            : ''
+        }
+        <a href="/post/${post.id}" data-link class="block">
         <div>
         <img
           src="${image}"
@@ -38,7 +61,7 @@ export async function renderPosts(posts) {
         </div>
               <hr class="my-4 border-gray-700"/>
               <div class="flex justify-between items-start gap-2">
-              <a href="/profiles/${post.author?.name || 'Unknown'}" data-link><h4 class="text-sm font-[Cinzel] text-gray-400 mb-2">
+              <a href="/profiles/${post.author?.name || 'Unknown'}" data-link><h4 class="text-xs font-[Cinzel] text-gray-400 mb-2">
                 Posted by ${post.author?.name || 'Unknown'} on ${new Date(post.created).toLocaleDateString()}
               </h4></a>
               <div 
@@ -78,7 +101,7 @@ export async function renderPosts(posts) {
   </button>
 </form>
 
-          <div class="mt-4 space-y-2">
+          <div class="mt-4 space-y-2" data-comments-container>
           ${post.comments
             ?.map(
               (comment) => `
@@ -88,6 +111,9 @@ export async function renderPosts(posts) {
               </p>
               <p class="font-[Inter] text-gray-300 mt-1">
                 ${comment.body}
+              </p>
+              <p class="text-xs text-gray-600 mt-1 text-end">
+                sent on ${new Date(comment.created).toLocaleString()}
               </p>
             </div>
           `
@@ -99,6 +125,53 @@ export async function renderPosts(posts) {
       `;
     })
   );
-
-  postsContainer.innerHTML = postHtmlArray.join('');
+  if (append) {
+    postsContainer.insertAdjacentHTML('beforeend', postHtmlArray.join(''));
+  } else {
+    postsContainer.innerHTML = postHtmlArray.join('');
+  }
 }
+document.addEventListener('click', (event) => {
+  const toggle = event.target.closest('.post-menu-toggle');
+  if (!toggle) return;
+  const postId = toggle.dataset.postId;
+  const menu = document.querySelector(`[data-menu-for="${postId}"]`);
+  menu?.classList.toggle('hidden');
+});
+
+document.addEventListener('click', (event) => {
+  if (
+    !event.target.closest('.post-menu') &&
+    !event.target.closest('.post-menu-toggle')
+  ) {
+    document.querySelectorAll('.post-menu').forEach((menu) => {
+      menu.classList.add('hidden');
+    });
+  }
+});
+
+document.addEventListener('click', async (event) => {
+  const deleteButton = event.target.closest('.delete-post');
+  if (!deleteButton) return;
+  const postId = deleteButton.dataset.postId;
+  if (!confirm('Are you sure you want to delete this post?')) return;
+  try {
+    await deletePost(postId);
+    document.querySelector(`[data-post="${postId}"]`)?.remove();
+    showToast('Post deleted successfully', 'success');
+  } catch (error) {
+    console.error('Failed to delete post:', error);
+    showToast('Failed to delete post. Please try again.', 'error');
+  }
+});
+
+document.addEventListener('click', (event) => {
+  const editButton = event.target.closest('.edit-post');
+  if (!editButton) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const postId = editButton.dataset.postId;
+
+  history.pushState(null, null, `/edit-post/${postId}`);
+  router();
+});

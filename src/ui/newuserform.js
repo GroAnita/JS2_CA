@@ -2,7 +2,7 @@ import { registerUser } from '../services/authenticationService.js';
 import { router } from '../router/router.js';
 import { isValidPassword } from '../utils/validation.js';
 import { isValidEmail } from '../utils/validation.js';
-import { isValidName } from '../utils/validation.js';
+import { isValidName, toggleRule } from '../utils/validation.js';
 
 export default function NewUserForm() {
   return `
@@ -22,6 +22,9 @@ export default function NewUserForm() {
         class="w-full p-2 rounded bg-gray-800"
         required
       />
+      <p id="email-rule" class="text-sm text-gray-500">
+        Please enter a valid email address.
+      </p>
 
       <input
         type="password"
@@ -29,7 +32,11 @@ export default function NewUserForm() {
         placeholder="Password"
         class="w-full p-2 rounded bg-gray-800"
         required
+       
       />
+      <p id="password-rule" class="text-sm text-gray-500">
+        Password must be at least 8 characters long and include a number and a special character.
+      </p>
 
       <button type="submit" class="   w-full mt-4 block text-center cursor-pointer
     rounded-xl px-4 py-2
@@ -64,6 +71,24 @@ export function initNewUserForm() {
   const messageEl = document.getElementById('form-message');
 
   if (!form || !messageEl) return;
+
+  const nameInput = form.querySelector('input[name="name"]');
+  const emailInput = form.querySelector('input[name="email"]');
+  const passwordInput = form.querySelector('input[name="password"]');
+  const emailRule = document.getElementById('email-rule');
+  const passwordRule = document.getElementById('password-rule');
+
+  nameInput.addEventListener('input', () => {
+    toggleRule(emailRule, isValidName(nameInput.value));
+  });
+
+  emailInput.addEventListener('input', () => {
+    toggleRule(emailRule, isValidEmail(emailInput.value));
+  });
+
+  passwordInput.addEventListener('input', () => {
+    toggleRule(passwordRule, isValidPassword(passwordInput.value));
+  });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();

@@ -12,6 +12,7 @@ import { logoutUser } from './services/authenticationService.js';
 import { getAuthState } from './state/authstate.js';
 //import { updateAuthUI } from "./ui/authUI.js";
 import { initFollowHandlers } from './ui/followHandlers.js';
+import { initCommentHandlers } from './ui/commentHandlers.js';
 localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
 document.addEventListener('auth:changed', () => {
   updateAuthUI();
@@ -41,6 +42,12 @@ document.addEventListener('click', (e) => {
     return;
   }
 
+  if (e.target.closest('[data-open-own-profile]')) {
+    e.preventDefault();
+    navigateTo('/ownProfile');
+    return;
+  }
+
   const link = e.target.closest('a[data-link]');
   if (link) {
     e.preventDefault();
@@ -64,6 +71,7 @@ export function initAuth() {
   setAuthState(authData);
 }
 initFollowHandlers(); // Set up follow/unfollow button handlers
+initCommentHandlers();
 
 initAuth(); //initializing the authentication state
 //the initial call to set up the correct view

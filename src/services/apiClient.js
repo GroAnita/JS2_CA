@@ -22,7 +22,9 @@ export async function apiClient(endpoint, options = {}) {
       headers,
     });
 
-    const result = await response.json();
+    let result = null;
+    const text = await response.text();
+    result = text ? JSON.parse(text) : {};
 
     if (!response.ok) {
       throw new Error(result.errors?.[0]?.message || 'API error');

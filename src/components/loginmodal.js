@@ -58,14 +58,11 @@ export default function LoginModal() {
 let loginModalInitialized = false;
 
 export function initLoginModal() {
-  console.log('initLoginModal called, initialized:', loginModalInitialized);
   if (loginModalInitialized) return;
 
   const modal = document.getElementById('login-modal');
-  console.log('Modal element:', modal);
 
   if (!modal) {
-    console.log('Modal not found, returning early');
     return;
   }
 
@@ -80,7 +77,6 @@ export function initLoginModal() {
     if (openButton) {
       e.preventDefault();
       modal.classList.remove('hidden');
-      console.log('Login Modal opened');
     }
   });
 

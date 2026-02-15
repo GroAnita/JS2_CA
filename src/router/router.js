@@ -8,7 +8,7 @@ import NewUser from '../views/newuser.js';
 import { initCreatePost } from '../views/initCreatePost.js';
 import createPost from '../views/createPost.js';
 
-import { initNewUserForm } from '../components/newuserform.js';
+import { initNewUserForm } from '../ui/newuserform.js';
 import { initLoginModal } from '../components/loginmodal.js';
 import { guestOnly } from './routeguards.js';
 import { updateAuthUI } from '../ui/authui.js';
@@ -21,6 +21,11 @@ import ProfileDetail from '../views/profileDetail.js';
 import { initProfileDetail } from '../views/initProfileDetail.js';
 
 import { getRandomAvatar } from '../services/unsplashService.js';
+import { initSinglePost } from '../views/initSinglePost.js';
+import { initOwnProfile } from '../views/initOwnProfile.js';
+import ownProfile from '../views/ownProfile.js';
+import editPost from '../views/editPost.js';
+import { initEditPost } from '../views/initEditPost.js';
 
 const routes = {
   '/': Home,
@@ -29,6 +34,7 @@ const routes = {
   '/newuser': guestOnly(NewUser),
   '/profiles': Profiles,
   '/createPost': createPost,
+  '/ownProfile': initOwnProfile,
 };
 
 export async function router() {
@@ -97,5 +103,23 @@ export async function router() {
 
   if (path === '/createPost') {
     initCreatePost();
+  }
+
+  if (path.startsWith('/post/')) {
+    const postId = path.split('/post/')[1];
+    initSinglePost(postId);
+    return;
+  }
+
+  if (path === '/ownProfile') {
+    document.getElementById('app').innerHTML = ownProfile();
+    initOwnProfile();
+  }
+
+  if (path.startsWith('/edit-post')) {
+    const postId = path.split('/edit-post/')[1];
+    document.getElementById('app').innerHTML = editPost();
+    await initEditPost(postId);
+    return;
   }
 }

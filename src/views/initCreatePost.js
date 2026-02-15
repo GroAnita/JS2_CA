@@ -1,5 +1,6 @@
 import { createPost } from '../services/postCreateService.js';
-
+import { router } from '../router/router.js';
+import { updatePost } from '../services/postFetchService.js';
 export function initCreatePost() {
   const form = document.querySelector('[data-create-post-form]');
   if (!form) return;
@@ -26,10 +27,20 @@ export function initCreatePost() {
         : null,
     };
     console.log('create post initialized');
+
+    const postId = form.dataset.postId;
+
     try {
-      await createPost(postData);
-      form.reset();
-      document.dispatchEvent(new Event('post:created'));
+      if (postId) {
+        await updatePost(postId, postData);
+      } else {
+        await createPost(postData);
+      }
+
+      document.dispatchEvent(new Event('post:updated'));
+      history.pushState(null, null, '/');
+      router();
+      window.scrollTo(0, 0);
     } catch (error) {
       alert(error.message || 'Failed to create post. Please try again.');
     }
