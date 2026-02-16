@@ -58,18 +58,24 @@ export default function SideMenu() {
           <span class="text-xs font-[Cinzel]">Grimoire</span>
         </a>
 
-        <a href="/" data-link class="${navItemClass}">
+        <button
+        type="button"
+        data-open-familiars
+        class="${navItemClass}">
           <div class="${iconCircleClass}">
             <i class="fa-solid fa-crow"></i>
           </div>
           <span class="text-xs font-[Cinzel]">Familiars</span>
-        </a>
+        </button>
 
-        <a href="/" data-link class="${navItemClass}">
+        <button
+        type="button"
+        data-link
+        class="${navItemClass}">
           <div class="${iconCircleClass}">
             <i class="fa-solid fa-magnifying-glass"></i>         </div>
           <span class="text-xs font-[Cinzel]">Scry</span>
-        </a>
+        </button>
 
         <button 
         type="button" 

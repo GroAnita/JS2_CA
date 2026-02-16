@@ -5,7 +5,7 @@ import Header from '../components/header.js';
 import SideNav from '../components/sidenav.js';
 import SideMenuRight from '../components/sidenavright.js';
 import NewUser from '../views/newuser.js';
-import { initCreatePost } from '../views/initCreatePost.js';
+import { initCreatePost } from '../initialize/initCreatePost.js';
 import createPost from '../views/createPost.js';
 
 import { initNewUserForm } from '../ui/newuserform.js';
@@ -13,19 +13,20 @@ import { initLoginModal } from '../components/loginmodal.js';
 import { guestOnly } from './routeguards.js';
 import { updateAuthUI } from '../ui/authui.js';
 
-import { initHome } from '../views/initHome.js';
+import { initHome } from '../initialize/initHome.js';
 import Profiles from '../views/profiles.js';
-import { initProfiles } from '../views/initProfiles.js';
+import { initProfiles } from '../initialize/initProfiles.js';
 
 import ProfileDetail from '../views/profileDetail.js';
-import { initProfileDetail } from '../views/initProfileDetail.js';
+import { initProfileDetail } from '../initialize/initProfileDetail.js';
 
 import { getRandomAvatar } from '../services/unsplashService.js';
-import { initSinglePost } from '../views/initSinglePost.js';
-import { initOwnProfile } from '../views/initOwnProfile.js';
+import { initSinglePost } from '../initialize/initSinglePost.js';
+import { initOwnProfile } from '../initialize/initOwnProfile.js';
 import ownProfile from '../views/ownProfile.js';
 import editPost from '../views/editPost.js';
-import { initEditPost } from '../views/initEditPost.js';
+import { initEditPost } from '../initialize/initEditPost.js';
+import { initFamiliars } from '../initialize/initFamiliars.js';
 
 const routes = {
   '/': Home,
@@ -120,6 +121,11 @@ export async function router() {
     const postId = path.split('/edit-post/')[1];
     document.getElementById('app').innerHTML = editPost();
     await initEditPost(postId);
+    return;
+  }
+
+  if (path === '/familiars') {
+    await initFamiliars();
     return;
   }
 }

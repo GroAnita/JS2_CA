@@ -1,3 +1,14 @@
+/**
+ * initHome is resposible for initializing the home page.
+ *
+ * Reponsible for:
+ * - Loading and rendering posts.
+ * -Handling "load more" button.
+ * -Showing the guest welcome message for user not logged in.
+ * -Fetching the profiles for my sidebar display.
+ * -setting the following list in a global state for use in follow buttons and profile displays.
+ */
+
 import { fetchPosts } from '../services/postCreateService.js';
 import showToast from '../ui/showToast.js';
 import { isLoggedIn } from '../state/authstate.js';
@@ -23,10 +34,27 @@ const iconCircleClass = `
     hover:shadow-[0_0_12px_rgba(199,125,255,0.4)]
   `;
 
+/**
+ * These 4 variales are :
+ * page - Current pagination page for post feed.
+ * LIMIT - How many posts to be loaded per page.
+ * isLastPage - Indicates if the last page has been reached.
+ * isLoading - Prevents multiple fetch requests at the same time.
+ */
 let page = 0;
 const LIMIT = 6;
 let isLastPage = false;
 let isLoading = false;
+
+/**
+ * Loads more posts for the post feed.
+ * Prevents duplicate requests and stops loading when it reach the last page of posts.
+ *
+ * @async
+ * @function loadMorePosts
+ * @param {boolean} [append=false] - If true, new posts will be appended to the existing feed, if false, it will be replacing the current feed.
+ * @returns {Promise<void>}
+ */
 
 async function loadMorePosts(append = false) {
   if (isLoading || isLastPage) return;
@@ -58,6 +86,10 @@ async function loadMorePosts(append = false) {
   isLoading = false;
 }
 
+/**
+ * This creates and appends the "Load More" button below the posts feed.
+ * Makes sure only one button is exists and adds click event listener, for loading more posts when clicked.
+ */
 function createLoadMoreButton() {
   if (document.getElementById('load-more-posts')) return;
   const app = document.getElementById('app');
@@ -74,11 +106,26 @@ function createLoadMoreButton() {
   app.appendChild(button);
 }
 
+/**
+ * Initializes the home view.
+ * Behavior:
+ * -It shows a welcome screen for guests.
+ * Loads and renders posts for logged in users.
+ * Fetches Following list for logged in user/current user.
+ * Loads profiles for sidebar.
+ * Enables pagination via the "Load More" button..
+ * 
+ * @async
+ * @function initHome
+ * @returns {Promise<{profiles: Array<Object>}|undefined>}
+ * Returns profiles for sidebar renders.
+ */
+
 export async function initHome() {
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
-  if (!isLoggedIn()) {
+  if (!isLoggedIn()) { //Shows welcome message for guests.
     page = 1;
     isLastPage = false;
     isLoading = false;
@@ -125,12 +172,19 @@ Explore the latest posts from our coven, discover new profiles, and let your mag
       const profile = await apiClient(
         `/social/profiles/${currentUser.username}?_following=true`
       );
+      //Store following list to control follow/unfollow buttons.
       setFollowingList(profile.data.following || []);
     }
 
-    await Promise.all([loadMorePosts(false), fetchProfiles()]);
+    const [, profilesResponse] = await Promise.all([
+      loadMorePosts(false),
+      fetchProfiles(),
+    ]);
 
     createLoadMoreButton();
+    return {
+      profiles: profilesResponse.data,
+    };
   } catch (error) {
     console.error('Failed to fetch posts:', error);
     if (error.message.includes('API key')) {

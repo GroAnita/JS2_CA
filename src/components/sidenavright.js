@@ -1,6 +1,8 @@
 import { getRandomAvatar } from '../services/unsplashService.js';
 
 export default async function SideMenuRight(profiles = []) {
+  console.log('profiles received:', profiles);
+
   return `
     <aside class="hidden md:flex w-64 flex-col bg-[#121212] px-6 py-8 border-l border-gray-700">
 
@@ -13,8 +15,7 @@ export default async function SideMenuRight(profiles = []) {
         ${(
           await Promise.all(
             profiles.slice(0, 6).map(async (profile) => {
-              const avatar =
-                profile.author?.avatar?.url || (await getRandomAvatar());
+              const avatar = profile.avatar?.url || (await getRandomAvatar());
 
               return `
               <a href="/profiles/${profile.name}" data-link class="block">
@@ -22,7 +23,7 @@ export default async function SideMenuRight(profiles = []) {
                   <div class="w-24 h-24 rounded-full border-2 border-gray-300/70 p-0.5 hover:border-purple-400 transition mb-4 mt-6">
                     <img
                       src="${avatar}"
-                      alt="Active user avatar"
+                      alt="${profile.name} avatar"
                       class="w-full h-full rounded-full object-cover"
                     />
                   </div>

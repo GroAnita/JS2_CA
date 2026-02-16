@@ -8,9 +8,7 @@ import { loadAuthFromStorage } from './utils/authstorage.js';
 import { updateAuthUI } from './ui/authui.js';
 import { setAuthState } from './state/authstate.js';
 import { logoutUser } from './services/authenticationService.js';
-//import { loadAuthFromStorage } from "./utils/authStorage.js";
 import { getAuthState } from './state/authstate.js';
-//import { updateAuthUI } from "./ui/authUI.js";
 import { initFollowHandlers } from './ui/followHandlers.js';
 import { initCommentHandlers } from './ui/commentHandlers.js';
 localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
@@ -52,6 +50,11 @@ document.addEventListener('click', (e) => {
   if (link) {
     e.preventDefault();
     navigateTo(link.getAttribute('href'));
+  }
+
+  if (e.target.closest('[data-open-familiars]')) {
+    e.preventDefault();
+    navigateTo('/familiars');
   }
 });
 
