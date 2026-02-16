@@ -34,11 +34,6 @@ export async function loginUser(credentials) {
   const authData = response.data;
   setAuthState(authData);
 
-  // Commenting out automatic API key creation - create manually at noroff.dev
-  // if (!localStorage.getItem('apiKey')) {
-  //   await createApiKey(authData.accessToken);
-  // }
-
   updateAuthUI();
   return authData;
 }

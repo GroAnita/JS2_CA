@@ -114,7 +114,7 @@ function createLoadMoreButton() {
  * Fetches Following list for logged in user/current user.
  * Loads profiles for sidebar.
  * Enables pagination via the "Load More" button..
- * 
+ *
  * @async
  * @function initHome
  * @returns {Promise<{profiles: Array<Object>}|undefined>}
@@ -122,10 +122,12 @@ function createLoadMoreButton() {
  */
 
 export async function initHome() {
+  console.log('Initializing home view...');
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
-  if (!isLoggedIn()) { //Shows welcome message for guests.
+  if (!isLoggedIn()) {
+    //Shows welcome message for guests.
     page = 1;
     isLastPage = false;
     isLoading = false;
@@ -180,6 +182,7 @@ Explore the latest posts from our coven, discover new profiles, and let your mag
       loadMorePosts(false),
       fetchProfiles(),
     ]);
+    console.log('profilesResponse:', profilesResponse.data);
 
     createLoadMoreButton();
     return {

@@ -21,10 +21,13 @@ import { getAvatar } from './getAvatar.js';
  * @param {Array<Object>} posts - Array of post objects from API.
  * @param {Object} [options] - Rendering options.
  * @param {boolean} [options.append=false] -If true, new posts will be appended to the container instead of replacing its content.
- * @returns {Promise<void>} Renders the posts in the DOM
+ * @param {string} [options.containerId='posts'] - The ID of the container where posts will be rendered.
  */
-export async function renderPosts(posts, { append = false } = {}) {
-  const postsContainer = document.getElementById('posts');
+export async function renderPosts(
+  posts,
+  { append = false, containerId = 'posts' } = {}
+) {
+  const postsContainer = document.getElementById(containerId);
   if (!postsContainer) return;
 
   const followingList = getFollowingList();

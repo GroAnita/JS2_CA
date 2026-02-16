@@ -3,6 +3,7 @@ import { getAvatar } from '../ui/getAvatar.js';
 import showToast from '../ui/showToast.js';
 import { getCurrentUser } from '../state/authstate.js';
 import { renderPosts } from '../ui/renderPosts.js';
+import { updateProfile } from '../services/profileService.js';
 
 export async function initOwnProfile() {
   const user = getCurrentUser();
@@ -14,7 +15,7 @@ export async function initOwnProfile() {
         user.username,
         '?_posts=true&_followers=true&following=true'
       ),
-      fetchProfilePosts(user.username),
+      fetchProfilePosts(user.username, '?_author=true&_comments=true'),
     ]);
 
     const profile = profileRes.data;
@@ -29,7 +30,7 @@ export async function initOwnProfile() {
         <h2 class="text-lg font-semibold text-purple-500">
         🕯️ ${profile.name}
         </h2>
-        <button id="change-avatar" class="mt-2 px-2 py-1 rounded-md bg-purple-500 text-white text-xs border border-gray-300/60 hover:border-purple-400 transition">
+        <button id="change-avatar" class="mt-2 px-2 py-1 rounded-lg bg-purple-500 text-white text-xs border-2 border-gray-300/60 hover:border-purple-600 hover:bg-purple-400 transition">
         Change Avatar
         </button>
         <p class="font-[Inter] text-gray-500 mt-2">
@@ -43,10 +44,33 @@ export async function initOwnProfile() {
 
         `;
 
+    const changeAvatarButton = document.getElementById('change-avatar');
+    if (!changeAvatarButton) {
+      console.warn('Change avatar button not found');
+      return;
+    }
+    changeAvatarButton.addEventListener('click', async () => {
+      const newAvatarUrl = prompt('Enter new avatar URL: ');
+      if (!newAvatarUrl) return;
+      try {
+        await updateProfile(user.username, {
+          avatar: {
+            url: newAvatarUrl,
+            alt: `${profile.name}'s avatar`,
+          },
+        });
+        showToast('Avatar updated successfully!', 'success');
+        document.querySelector('#own-profile-info img').src = newAvatarUrl;
+      } catch (error) {
+        console.error('Failed to update avatar:', error);
+        showToast('Failed to update avatar. Please try again.', 'error');
+      }
+    });
+
     const bioInput = document.getElementById('bio-input');
     bioInput.value = profile.bio || '';
 
-    await renderPosts(posts);
+    await renderPosts(posts, { containerId: 'own-posts' });
   } catch (error) {
     console.error('Error loading profile:', error);
     showToast('Failed to load profile. Please try again later.', 'error');

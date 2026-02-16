@@ -27,6 +27,7 @@ import ownProfile from '../views/ownProfile.js';
 import editPost from '../views/editPost.js';
 import { initEditPost } from '../initialize/initEditPost.js';
 import { initFamiliars } from '../initialize/initFamiliars.js';
+import { fetchProfiles } from '../services/profileService.js';
 
 const routes = {
   '/': Home,
@@ -37,10 +38,26 @@ const routes = {
   '/createPost': createPost,
   '/ownProfile': initOwnProfile,
 };
+async function prepareProfilesForSidebar(profiles) {
+  return Promise.all(
+    profiles.slice(0, 6).map(async (profile) => {
+      if (profile.avatar?.url) return profile;
+      const avatarUrl = await getRandomAvatar();
+      return {
+        ...profile,
+        avatar: {
+          url: avatarUrl,
+          alt: `${profile.name} avatar`,
+        },
+      };
+    })
+  );
+}
 
 export async function router() {
   const base = '/JS2_CA';
   let path = window.location.pathname;
+  console.log('PATH', path);
 
   if (path.startsWith(base)) {
     path = path.slice(base.length) || '/';
@@ -72,22 +89,11 @@ export async function router() {
   if (path === '/') {
     const homeData = await initHome();
     profiles = homeData?.profiles || [];
-
-    profiles = await Promise.all(
-      profiles.slice(0, 6).map(async (profile) => {
-        if (profile.avatar?.url) return profile;
-
-        const avatarUrl = await getRandomAvatar();
-        return {
-          ...profile,
-          avatar: {
-            url: avatarUrl,
-            alt: `${profile.name} avatar`,
-          },
-        };
-      })
-    );
+  } else {
+    const profilesResponse = await fetchProfiles();
+    profiles = profilesResponse.data;
   }
+  profiles = await prepareProfilesForSidebar(profiles);
 
   document.getElementById('sidenavRight').innerHTML =
     await SideMenuRight(profiles);
