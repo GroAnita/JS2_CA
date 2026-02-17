@@ -40,6 +40,7 @@ export async function initProfileDetail(name) {
                 <h3 class="text-lg font-[Cinzel] font-semibold text-purple-500">
                     🕯️ ${profile.name}
                 </h3>
+                <img
                 <p class="font-[Inter] text-gray-300 mt-2">
                     ${post.body}
                 </p>

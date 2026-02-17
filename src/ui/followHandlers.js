@@ -4,7 +4,7 @@ import { getFollowingList, setFollowingList } from '../state/followState.js';
 /**
  * Initializing global follow/unfollow button click handlers.
  * -Basically it listens for clicks on follow buttons anywhere on the document.
- * 1.It calls API to follow or unfollow user.
+ * 1.It calls API to follow or unfollow user, via unfollow() and follow() functions.
  * 2.Updates the global following state.
  * 3.Updates all follow buttons for that user in the UI.
  *

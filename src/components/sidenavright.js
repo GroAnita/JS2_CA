@@ -1,8 +1,6 @@
 import { getRandomAvatar } from '../services/unsplashService.js';
 
 export default async function SideMenuRight(profiles = []) {
-  console.log('profiles received:', profiles);
-
   return `
     <aside class="hidden md:flex w-64 flex-col bg-[#121212] px-6 py-8 border-l border-gray-700">
 

@@ -11,6 +11,8 @@ import { logoutUser } from './services/authenticationService.js';
 import { getAuthState } from './state/authstate.js';
 import { initFollowHandlers } from './ui/followHandlers.js';
 import { initCommentHandlers } from './ui/commentHandlers.js';
+import { initSearch } from './initialize/initSearch.js';
+
 localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
 document.addEventListener('auth:changed', () => {
   updateAuthUI();
@@ -74,9 +76,8 @@ export function initAuth() {
   setAuthState(authData);
 }
 initFollowHandlers(); // Set up follow/unfollow button handlers
-initCommentHandlers();
-
+initCommentHandlers(); // Set up comment button handlers
 initAuth(); //initializing the authentication state
-//the initial call to set up the correct view
-getAuthState(); //just to check if we can get the auth state on page load, for debugging
+getAuthState();
+initSearch(); // Initialize search functionality
 router();

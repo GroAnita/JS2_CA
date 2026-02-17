@@ -33,10 +33,10 @@ export async function initOwnProfile() {
         <button id="change-avatar" class="mt-2 px-2 py-1 rounded-lg bg-purple-500 text-white text-xs border-2 border-gray-300/60 hover:border-purple-600 hover:bg-purple-400 transition">
         Change Avatar
         </button>
-        <p class="font-[Inter] text-gray-500 mt-2">
+        <p class="font-[Inter] text-white mt-2">
         ${profile.bio || 'No bio available.'}
         </p>
-        <p class="text-sm text-gray-500 mt-1">
+        <p class="text-sm text-gray-300 mt-1">
         posts: ${profile._count?.posts ?? 0}
         followers: ${profile._count?.followers ?? 0}
         following: ${profile._count?.following ?? 0}

@@ -70,7 +70,7 @@ export default function SideMenu() {
 
         <button
         type="button"
-        data-link
+        data-open-search
         class="${navItemClass}">
           <div class="${iconCircleClass}">
             <i class="fa-solid fa-magnifying-glass"></i>         </div>

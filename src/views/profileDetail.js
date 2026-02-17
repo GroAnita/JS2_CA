@@ -4,9 +4,9 @@ export default function ProfileDetail(name) {
       <h1 class="text-2xl font-[Cinzel] text-purple-400 mb-4 text-center">
         ${name}'s Grimoire
       </h1>
+      
 
       <div id="profile-detail">
-        <!-- Profile data loads here -->
       </div>
 
       <div id="profile-posts" class="mt-6 space-y-4">

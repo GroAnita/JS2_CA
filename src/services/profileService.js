@@ -65,10 +65,13 @@ export function unfollowProfile(name) {
 }
 
 /**
- * Searched for profiles by a query string. Sends a GET request to the API to search for profiles mathching the query.
- * @param {string} query - The search query sting.
- * @returns {Promise<Object>} - matching profiles
+ * Searches for profiles by a query string. Sends a GET request to the API to search for profiles matching the query.
+ * @param {string} query - The search query string.
+ * @returns {Promise<Object>} - Matching profiles
  */
 export function searchProfiles(query) {
-  return apiClient(`/social/profiles/search?query=${query}`);
+  if (!query || query.trim()) return Promise.resolve({ data: [] });
+  return apiClient(
+    `/social/profiles/search?query=${encodeURIComponent(query)}`
+  );
 }

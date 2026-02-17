@@ -10,7 +10,7 @@ export default function ownProfile() {
     <h3 class="text-xl font-bold mb-4">Your Bio</h3>
     <textarea
         id="bio-input"
-      class="w-3/4 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+      class="w-3/4 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:text-color-purple-600 text-purple-600"
       rows="5"
       placeholder="Share your story..."
     ></textarea>
