@@ -10,8 +10,8 @@ import { setAuthState } from './state/authstate.js';
 import { logoutUser } from './services/authenticationService.js';
 import { getAuthState } from './state/authstate.js';
 import { initFollowHandlers } from './ui/followHandlers.js';
-import { initCommentHandlers } from './ui/commentHandlers.js';
 import { initSearch } from './initialize/initSearch.js';
+import { initComment } from './initialize/initComment.js';
 
 localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
 document.addEventListener('auth:changed', () => {
@@ -76,8 +76,8 @@ export function initAuth() {
   setAuthState(authData);
 }
 initFollowHandlers(); // Set up follow/unfollow button handlers
-initCommentHandlers(); // Set up comment button handlers
 initAuth(); //initializing the authentication state
 getAuthState();
 initSearch(); // Initialize search functionality
+initComment(); // Initialize comment functionality
 router();

@@ -1,6 +1,9 @@
 import { createPost } from '../services/postCreateService.js';
 import { router } from '../router/router.js';
 import { updatePost } from '../services/postFetchService.js';
+import { ValidateImageUrls } from '../utils/validation.js';
+import showToast from '../ui/showToast.js';
+
 export function initCreatePost() {
   const form = document.querySelector('[data-create-post-form]');
   if (!form) return;
@@ -15,6 +18,13 @@ export function initCreatePost() {
       : [];
 
     const imageUrl = form.image?.value.trim();
+    if (imageUrl && !ValidateImageUrls(imageUrl)) {
+      showToast(
+        'Please use a sage image from unsplash, pixabay, imgur or pexels.',
+        'error'
+      );
+      return;
+    }
     const postData = {
       title,
       body,

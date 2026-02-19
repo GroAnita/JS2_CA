@@ -5,6 +5,8 @@ import showToast from '../ui/showToast.js';
 export async function initSinglePost(postId) {
   try {
     const response = await fetchSinglePost(postId);
+    const container = document.getElementById('app');
+    container.innerHTML = '';
     await renderSinglePost(response.data);
   } catch (error) {
     console.error('Failed to load post:', error.message);

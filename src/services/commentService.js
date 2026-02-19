@@ -1,9 +1,9 @@
 import { apiClient } from './apiClient.js';
 
-export function createComment(postId, body) {
-  return apiClient(`/social/posts/${postId}/comment`, {
+export function createComment(postId, commentText) {
+  return apiClient(`/social/posts/${postId}/comment?_author=true`, {
     method: 'POST',
-    body: JSON.stringify({ body }),
+    body: JSON.stringify({ body: commentText }),
   });
 }
 

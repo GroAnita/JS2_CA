@@ -122,7 +122,6 @@ function createLoadMoreButton() {
  */
 
 export async function initHome() {
-  console.log('Initializing home view...');
   const postsContainer = document.getElementById('posts');
   if (!postsContainer) return;
 
@@ -182,7 +181,6 @@ Explore the latest posts from our coven, discover new profiles, and let your mag
       loadMorePosts(false),
       fetchProfiles(),
     ]);
-    console.log('profilesResponse:', profilesResponse.data);
 
     createLoadMoreButton();
     return {

@@ -27,3 +27,40 @@ export function toggleRule(element, isValid) {
     element.classList.add('text-red-500');
   }
 }
+
+export function ValidateImageUrls(url) {
+  if (!url) return true;
+
+  const allowedHosts = [
+    'images.unsplash.com',
+    'cdn.pixabay.com',
+    'i.imgur.com',
+    'images.pexels.com',
+  ];
+
+  const bannedWords = [
+    'porn',
+    'sex',
+    'nude',
+    'nsfw',
+    'xxx',
+    'adult',
+    'violence',
+    'gambling',
+    'drugs',
+    'hate',
+    'racism',
+    'terrorism',
+  ];
+
+  try {
+    const parsed = new URL(url);
+    if (!allowedHosts.includes(parsed.hostname)) return false;
+    if (bannedWords.some((word) => url.toLowerCase().includes(word)))
+      return false;
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
