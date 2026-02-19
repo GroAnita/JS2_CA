@@ -57,7 +57,13 @@ export async function router() {
 
     document.getElementById('app').innerHTML = ProfileDetail(name);
 
-    document.getElementById('sidenavRight').innerHTML = await SideMenuRight([]);
+    const profilesResponse = await fetchProfiles();
+    let profiles = profilesResponse.data;
+    profiles = await prepareProfilesForSidebar(profiles);
+    const sideNavRight = document.getElementById('sidenavRight');
+    sideNavRight.innerHTML = '';
+    const menu = await SideMenuRight(profiles);
+    sideNavRight.appendChild(menu);
 
     initLoginModal();
     updateAuthUI();
@@ -67,8 +73,14 @@ export async function router() {
   }
 
   const route = routes[path] || Home;
-  document.getElementById('app').innerHTML = route();
-
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  const view = route();
+  if (view instanceof HTMLElement) {
+    app.appendChild(view);
+  } else {
+    app.innerHTML = view;
+  }
   let profiles = [];
 
   if (path === '/') {
@@ -80,8 +92,10 @@ export async function router() {
   }
   profiles = await prepareProfilesForSidebar(profiles);
 
-  document.getElementById('sidenavRight').innerHTML =
-    await SideMenuRight(profiles);
+  const sideNavRight = document.getElementById('sidenavRight');
+  sideNavRight.innerHTML = '';
+  sideNavRight.appendChild(await SideMenuRight(profiles));
+
   initLoginModal();
   updateAuthUI();
 

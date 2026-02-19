@@ -21,6 +21,11 @@ export async function renderSinglePost(post) {
     console.warn('Single post container not found');
     return;
   }
+
+  const singlePostArticle = document.createElement('article');
+  singlePostArticle.className =
+    'relative border p-6 rounded-lg bg-[var(--color-bg-surface)]';
+
   const backButton = document.createElement('button');
   backButton.id = 'back-button';
   backButton.className = 'mb-6 text-purple-400 hover:underline';
@@ -28,10 +33,6 @@ export async function renderSinglePost(post) {
   backButton.addEventListener('click', () => {
     history.back();
   });
-
-  const singlePostArticle = document.createElement('article');
-  singlePostArticle.className =
-    'relative border p-6 rounded-lg bg-[var(--color-bg-surface)]';
 
   const singlePostHeader = document.createElement('header');
   singlePostHeader.className = 'flex items-center gap-3 mb-2';
@@ -208,7 +209,7 @@ export async function renderSinglePost(post) {
 
     commentsContainer.appendChild(commentDiv);
   });
-
+  singlePostArticle.appendChild(backButton);
   singlePostArticle.appendChild(singlePostHeader);
   singlePostArticle.appendChild(image);
   singlePostArticle.appendChild(title);
