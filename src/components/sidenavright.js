@@ -1,6 +1,9 @@
 import { getRandomAvatar } from '../services/unsplashService.js';
+import { getFollowingList } from '../state/followState.js';
 
-export default async function SideMenuRight(profiles = []) {
+export default async function SideMenuRight() {
+  const following = getFollowingList();
+
   const aside = document.createElement('aside');
   aside.className =
     'hidden md:flex w-64 flex-col bg-[#121212] px-6 py-8 border-l border-gray-700';
@@ -16,7 +19,8 @@ export default async function SideMenuRight(profiles = []) {
   section.className =
     'flex flex-col items-center gap-4 px-6 py-4 overflow-x-auto border-b border-gray-700 bg-[#121212]';
 
-  const firstSixProfiles = profiles.slice(0, 6);
+  // only show the first 6 profiles in the sidebar, the rest can be viewed on the profiles page. Do not want sidebar to be to long and cluttered.
+  const firstSixProfiles = following.slice(0, 6);
 
   for (const profile of firstSixProfiles) {
     const avatarUrl = profile.avatar?.url || (await getRandomAvatar());
@@ -35,7 +39,7 @@ export default async function SideMenuRight(profiles = []) {
 
     const avatarImg = document.createElement('img');
     avatarImg.src = avatarUrl;
-    avatarImg.alt = `€{profile.name} avatar`;
+    avatarImg.alt = `${profile.name} avatar`;
     avatarImg.className = 'w-full h-full rounded-full object-cover';
 
     const name = document.createElement('span');

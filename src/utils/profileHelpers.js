@@ -1,4 +1,5 @@
 import { getRandomAvatar } from '../services/unsplashService.js';
+import { getFollowingList } from '../state/followState.js';
 
 /**
  * Makes sure that profiles in the sidebar has avatars and limits the number of profiles to display.
@@ -7,9 +8,33 @@ import { getRandomAvatar } from '../services/unsplashService.js';
  * @param {number} [limit=6]
  * @returns {Promise<Array<Object>>}
  */
-export async function prepareProfilesForSidebar(profiles, limit = 6) {
-  return Promise.all(
-    profiles.slice(0, limit).map(async (profile) => {
+export async function prepareProfilesForSidebar(profiles) {
+  const following = getFollowingList();
+  const followingNames = new Set(following.map((user) => user.name));
+
+  const familiarProfiles = profiles.filter((profile) =>
+    followingNames.has(profile.name)
+  );
+
+  const preparedProfiles = await Promise.all(
+    familiarProfiles.map(async (profile) => {
+      if (profile.avatar?.url) return profile;
+
+      const avatarUrl = await getRandomAvatar();
+      return {
+        ...profile,
+        avatar: {
+          url: avatarUrl,
+          alt: `${profile.name} avatar`,
+        },
+      };
+    })
+  );
+  return preparedProfiles.slice(0, 6); // Limit to the first 6 profiles
+}
+
+/**  return Promise.all(
+    profiles.map(async (profile) => {
       if (profile.avatar?.url) return profile;
       const avatarUrl = await getRandomAvatar();
       return {
@@ -21,4 +46,4 @@ export async function prepareProfilesForSidebar(profiles, limit = 6) {
       };
     })
   );
-}
+}*/

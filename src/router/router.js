@@ -27,6 +27,9 @@ import { initEditPost } from '../initialize/initEditPost.js';
 import { initFamiliars } from '../initialize/initFamiliars.js';
 import { fetchProfiles } from '../services/profileService.js';
 import { prepareProfilesForSidebar } from '../utils/profileHelpers.js';
+import { setFollowingList } from '../state/followState.js';
+import { getCurrentUser, isLoggedIn } from '../state/authstate.js';
+import { apiClient } from '../services/apiClient.js';
 import searchOverlay from '../ui/searchOverlay.js';
 
 /**
@@ -81,6 +84,20 @@ export async function router() {
   } else {
     app.innerHTML = view;
   }
+  if (isLoggedIn()) {
+    const currentUser = getCurrentUser();
+    if (currentUser) {
+      try {
+        const profile = await apiClient(
+          `/social/profiles/${currentUser.username}?_following=true`
+        );
+        setFollowingList(profile.data.following || []);
+      } catch (e) {
+        console.warn('Could not fetch following list:', e.message);
+      }
+    }
+  }
+
   let profiles = [];
 
   if (path === '/') {

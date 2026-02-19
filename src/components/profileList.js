@@ -14,8 +14,7 @@ export async function renderProfiles(profiles) {
     noProfilesMessage.className = 'text-center text-gray-500';
     noProfilesMessage.textContent = 'No profiles found.';
     container.appendChild(noProfilesMessage);
-    // container.innerHTML =
-    // '<p class="text-center text-gray-500">No profiles found.</p>';
+
     return;
   }
 
