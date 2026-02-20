@@ -36,9 +36,15 @@ export async function initOwnProfile() {
         <p class="font-[Inter] text-white mt-2">
         ${profile.bio || 'No bio available.'}
         </p>
-        <p class="text-sm text-gray-300 mt-1">
+            <p class="text-sm text-gray-300 mt-1">
         posts: ${profile._count?.posts ?? 0}
+        </p>
+                    <p class="text-sm text-gray-300 mt-1">
+
         followers: ${profile._count?.followers ?? 0}
+        </p>
+                    <p class="text-sm text-gray-300 mt-1">
+
         following: ${profile._count?.following ?? 0}
         </p>
 

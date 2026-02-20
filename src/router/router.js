@@ -44,6 +44,7 @@ const routes = {
 };
 
 export async function router() {
+  // github gave me some issues so had to come up with a workaround to get the base path and remove it from pathname to make my routing work local and githubpages. Probably not a robust solution, but when in crises...
   const base = '/JS2_CA';
   let path = window.location.pathname;
 
@@ -54,7 +55,7 @@ export async function router() {
   // Layout
   document.getElementById('sidenav').innerHTML = SideNav();
   document.getElementById('header').innerHTML = Header();
-  document.body.insertAdjacentHTML('beforeend', searchOverlay());
+  document.body.appendChild(searchOverlay());
   if (path.startsWith('/profiles/') && path !== '/profiles') {
     const name = path.split('/')[2];
 

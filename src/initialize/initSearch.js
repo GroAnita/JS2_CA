@@ -48,17 +48,17 @@ export function initSearch() {
       console.log('searching for posts...');
       const response = await fetchPosts(`&search=${encodeURIComponent(query)}`);
       const posts = response.data || [];
-      // was not able to make the API filter posts like i wanted, so this is a "manual" filter on the client side, that filter posts by query in both title and body. Atleast it works ..
-      const filteredposts = posts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(query.toLowerCase()) ||
-          post.body.toLowerCase().includes(query.toLowerCase())
-      );
 
-      if (!posts.length) {
-        results.innerHTML = '<p class="text-gray-500">No results found.</p>';
-        return;
-      }
+      // Wanted a filter that is better at matching titles and body text, and is case insensitive, better at more exact text?!.
+      const filteredposts = posts.filter((post) => {
+        const title = post.title?.toLowerCase() || '';
+        const body = post.body?.toLowerCase() || '';
+
+        return (
+          title.includes(query.toLowerCase()) ||
+          body.includes(query.toLowerCase())
+        );
+      });
 
       results.innerHTML = filteredposts
         .map(

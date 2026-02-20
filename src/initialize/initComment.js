@@ -1,7 +1,23 @@
 import { createComment } from '../services/commentService.js';
 import showToast from '../ui/showToast.js';
 
+/**
+ * initialize a global comment form submission handler.
+ * Listens for submit events on any form marked with [data-comment-form]
+ * and:
+ * - Prevents default form submussion.
+ * - Validates the comment text input.
+ * - Sends comment to API.
+ * - Creates it and inserts it to the DOM.
+ * -
+ * Expected HTML structure:
+ * <form data-comment-form data-post-id="POST_ID">
+ *   <input type="text" name="comment" required />
+ * @function initComment
+ * @returns {void}
+ */
 export function initComment() {
+  //Global event listener for comment form submission. (event delegation pattern)
   document.addEventListener('submit', async (event) => {
     const form = event.target.closest('[data-comment-form]');
     if (!form) return;
@@ -43,7 +59,7 @@ export function initComment() {
       time.textContent = new Date(comment.created).toLocaleString();
 
       commentDiv.append(author, body, time);
-      container.prepend(commentDiv);
+      container.prepend(commentDiv); //newest comment on top
 
       input.value = '';
     } catch (error) {
