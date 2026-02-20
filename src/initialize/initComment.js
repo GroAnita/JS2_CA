@@ -16,7 +16,11 @@ import showToast from '../ui/showToast.js';
  * @function initComment
  * @returns {void}
  */
+
+let commentInitialized = false; // trying to prevent multible comments from same eventListener.
 export function initComment() {
+  if (commentInitialized) return;
+  commentInitialized = true;
   //Global event listener for comment form submission. (event delegation pattern)
   document.addEventListener('submit', async (event) => {
     const form = event.target.closest('[data-comment-form]');

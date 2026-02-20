@@ -21,7 +21,7 @@ export default function LoginModal() {
             type="email"
             name="email"
             placeholder="Email"
-            class="border border-gray-300 rounded px-3 py-2"
+            class="border border-gray-300 rounded px-3 py-2 text-purple-700"
             autocomplete="email"
             required
           />
@@ -30,7 +30,7 @@ export default function LoginModal() {
             type="password"
             name="password"
             placeholder="Password"
-            class="border border-gray-300 rounded px-3 py-2"
+            class="border border-gray-300 rounded px-3 py-2 text-purple-800"
             autocomplete="current-password"
             required
           />
