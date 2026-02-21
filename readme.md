@@ -1,185 +1,188 @@
-# Welcome to The social media app HEX & Chill
+# Hex & Chill — Social Media App
 
 A mystical social media platform where users can share spells, follow other witches and interact through comments.
 
-Built as a **Single Page Application(SPA)** using Noroffs API.
+Built as a **Single Page Application (SPA)** using the Noroff API.
 
-## Link to live demo:
+## Live Demo
 
-[Live demo:](https://groanita.github.io/JS2_CA/)
+[View live demo](https://groanita.github.io/JS2_CA/)
 
 ## Features
 
 ### Authentication
 
-- User registration and log in
-- Secure token based authentication
-- Protected actions for logged in users.
+- User registration and login
+- Secure token-based authentication
+- Protected actions for logged-in users
 
 ### Posts
 
-- Create, edit and delete your own posts.
-- Add images with a safe media URLs.
-- Display posts in feed and as a single view.
+- Create, edit and delete your own posts
+- Add images with safe media URLs
+- Display posts in a feed and as a single view
 
 ### Comments
 
 - Add comments to posts
-- Instand DOM update without refreshing
-- Real time UI feedback.
+- Instant DOM update without refreshing
+- Real-time UI feedback
 
 ### Profiles and Following
 
-- View user profiles.
-- Follow and unfollow users.
+- View user profiles
+- Follow and unfollow users
 - Sidebar displays followed users (known as Familiars)
-- Can also see ALL the familiars you follow from sidemenu.
+- View all Familiars from the Familiars button in the side menu
 
 ### Search
 
-- Live search Overlay.
-- Client side filtering of posts.
-- Overlay will close on navigation.
+- Live search overlay
+- Client-side filtering of posts
+- Overlay closes on navigation
 
 ### UI and UX
 
 - SPA router navigation
 - Responsive layout
-- Fantasy Theme.
+- Fantasy theme
 
-### Tech Stack
+## Tech Stack
 
-**FrontEnd**
+### Front End
 
 - HTML
 - Tailwind CSS
 - Vanilla JavaScript
 
-**Architecture**
+### Architecture
 
 - SPA Router
-- Modular Component structure.
-- Event driven UI updating.
-- State management via modules.
+- Modular component structure
+- Event-driven UI updating
+- State management via modules
 
-**API**
+### API
 
 - Noroff Social API
 - Bearer token authentication
 
-**Tooling**
+### Tooling
 
 - Vite
-- .env
-- github
+- `.env` for environment variables
+- GitHub Actions for deployment
 
-### Architecture Overview
+## Architecture Overview
 
 main.js
 |
 ↓
-router.js -> renders layout and views
+router.js → renders layout and views
 |
 ↓
-init functions -> attaches event handlers
+init functions → attaches event handlers
 |
 ↓
-Services -> API communication
+services → API communication
 |
 ↓
-State -> auth and follow state
+state → auth and follow state
 
-### Project structure
+## Project Structure
 
 src/
-|
-|-- components/ -> UI components(header, sidebars, modals)
-|
-|-- views/ -> Page views
-|
-|-- initialize/ -> init functions (attach logics)
-|
-|-- services/ -> API requests
-|
-|-- state/ -> auth and follow state
-|
-|-- utils/ -> validation and helpers
-|
-|-- ui/ -> UI logic (toasts and handlers)
-|
-|-- router/ -> SPA router
-|
-|-- main.js -> App entry point
+├── components/ → UI components (header, sidebars, modals)
+├── views/ → Page views
+├── initialize/ → Init functions (attach logic)
+├── services/ → API requests
+├── state/ → Auth and follow state
+├── utils/ → Validation and helpers
+├── ui/ → UI logic (toasts, handlers)
+├── router/ → SPA router
+└── main.js → App entry point
 
-### Getting Started!
+## Getting Started
 
-**Clone repo**
+✅**Clone the repo**
 
-1. git clone https://github.com/GroAnita/JS2_CA
-   cd hex-and-chill
+```bash
+git clone https://github.com/GroAnita/JS2_CA
+cd JS2_CA
+```
 
-**Install Dependencies** 2. npm install
+✅**Install dependencies**
 
-**Add .env** 3. VITE_NOROFF_API_KEY= your_api_key_here
+```bash
+npm install
+```
 
-**Run dev server** 4. npm run dev
+✅**Add `.env`**
 
-### API usage
+VITE_NOROFF_API_KEY=your_api_key_here
 
-This project uses the Noroff social API
-Authentication requires:
+✅**Run dev server**
 
-- Bearer Token
+```bash
+npm run dev
+```
+
+## API Usage
+
+This project uses the Noroff Social API. Authentication requires:
+
+- Bearer token
 - API key header
 
-ex:
-authorization: Bearer <token>
-X-Noroff-API-Key: <key>
+Example:
 
-### Validation and Security
+Authorization: Bearer token
+X-Noroff-API-Key: key
 
-✔ Password strength validation
-✔ Email validation
-✔ safe image URL filtering
-✔ Protection agains unsafe media sources
+## Validation and Security
 
-Allowed image hosts:
+- ✔ Password strength validation
+- ✔ Email validation
+- ✔ Safe image URL filtering
+- ✔ Protection against unsafe media sources
 
-✔ Unsplash
-✔ Pixabay
-✔ Imgur
-✔ Pexels
+**Allowed image hosts:**
 
-### My Learning Goals
+- ✔ Unsplash
+- ✔ Pixabay
+- ✔ Imgur
+- ✔ Pexels
+
+## Learning Goals
 
 - SPA architecture
 - Modular JS design
 - API integration and authentication
-- State management without using frameworks
-- Event driven UI updates
+- State management without frameworks
+- Event-driven UI updates
 - Accessibility and UX considerations
 
-### Known Issues
+## Known Issues
 
-✔ Search is using client side filtering due to API limitations
-✔ Sidebar show up to 6 followers at a time.(rest can be seen in view from familiars button in sidenav.)
+- Search uses client-side filtering due to API limitations
+- Sidebar shows up to 6 Familiars at a time (the rest can be seen via the Familiars button in the side menu)
 
-### Future improvements I would like to implement
+## Future Improvements
 
-✔ Reaction system for like and so on
-✔ Infinite scroll news feed
-✔ Websocket live updates
-✔ emojis
+- Reaction system (likes etc.)
+- Infinite scroll news feed
+- WebSocket live updates
+- Emoji support
 
-### Author of project
+## Author
 
-**Gro Anita Bråthen**
-FrontEnd Development Student at Noroff
+**Gro Anita Bråthen**  
+Front-End Development Student at Noroff
 
-### License
+## License
 
-This project was created for educational purposes at Noroff
+This project was created for educational purposes at Noroff.
 
-### If you like this project
+## Contributing
 
-Feel free to fork, explore and build upon it
+Feel free to fork, explore and build upon it.
