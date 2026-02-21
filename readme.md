@@ -75,7 +75,7 @@ Built as a **Single Page Application (SPA)** using the Noroff API.
 
 ## Architecture Overview
 
-```
+```bash
 
 main.js
 |
