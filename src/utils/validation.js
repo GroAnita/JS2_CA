@@ -1,3 +1,4 @@
+// validation for register new user .
 export function isValidPassword(password) {
   return (
     password.length >= 8 &&
@@ -7,10 +8,13 @@ export function isValidPassword(password) {
   );
 }
 
+// validation for register new email for user .
 export function isValidEmail(email) {
   if (!email) return false;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  return (
+    emailRegex.test(email) && email.toLowerCase().endsWith('@stud.noroff.no')
+  );
 }
 
 export function isValidName(name) {
@@ -28,6 +32,7 @@ export function toggleRule(element, isValid) {
   }
 }
 
+// Validating where users can upload images from , to prevent unsavory images.
 export function ValidateImageUrls(url) {
   if (!url) return true;
 

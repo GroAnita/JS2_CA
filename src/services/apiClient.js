@@ -2,8 +2,8 @@ import { getAuthToken } from '../state/authstate.js';
 import { getUserFriendlyErrorMessages } from '../utils/errorMessages.js';
 
 const BASE_URL = 'https://v2.api.noroff.dev';
-/**
 
+/**
  * options: object: method, headers, body etc passed to fetch.
  * returns: the parsed JSON response from the API, or throws an error with a user-friendly message if the request fails.
  * API key injection and error handling is done here to centralize it and avoid repetition in other service files.
@@ -15,7 +15,7 @@ const BASE_URL = 'https://v2.api.noroff.dev';
  * @param {object} [options={}] - Optional fetch options (method, headers, body, etc.).
  * @returns {Promise<object>} - The parsed JSON response from the API.
  * @throws {Error} - Throws an error with a user-friendly message if the request fails.
- * @example // GET request 
+ * @example // GET request
  * const posts = await apiClient('/social/posts');
  * @example // POST request with body
  * const createPost = await apiClient('/social/posts', {

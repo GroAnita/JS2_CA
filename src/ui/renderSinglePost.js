@@ -1,9 +1,7 @@
 import { getRandomPostImage } from '../services/unsplashService.js';
 import { getFollowingList } from '../state/followState.js';
 import { getCurrentUser } from '../state/authstate.js';
-import showToast from './showToast.js';
 import { getAvatar } from './getAvatar.js';
-import { createComment } from '../services/commentService.js';
 
 /**
  * Renders a single post view with all its details.
@@ -220,27 +218,6 @@ export async function renderSinglePost(post) {
 
   singlePostContainer.appendChild(singlePostArticle);
 }
-
-document.addEventListener('submit', async (event) => {
-  const commentForm = event.target.closest('[data-comment-form]');
-  if (!commentForm) return;
-  event.preventDefault();
-
-  const postId = commentForm.dataset.postId;
-  const commentText = commentForm.comment.value.trim();
-  if (!commentText) return;
-  try {
-    await createComment(postId, commentText);
-    console.log('postId:', postId);
-    console.log('comment:', commentText);
-
-    commentForm.reset();
-    showToast('Whisper sent!', 'success');
-  } catch (error) {
-    console.error('Failed to create comment:', error);
-    showToast('Failed to send whisper. Please try again.', 'error');
-  }
-});
 
 /**
  * Toggles the menu for edit/delete post options if it is users own post they show or else they are hidden. Also handles the click events for both edit and delete button.

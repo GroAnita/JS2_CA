@@ -1,7 +1,5 @@
 import './css/variables.css';
 import './css/styles.css';
-import './css/nav.css';
-import './css/loggedinusers.css';
 import { router } from './router/router.js';
 import LoginModal, { initLoginModal } from './components/loginmodal.js';
 import { loadAuthFromStorage } from './utils/authstorage.js';
@@ -13,6 +11,7 @@ import { initFollowHandlers } from './ui/followHandlers.js';
 import { initSearch } from './initialize/initSearch.js';
 import { initComment } from './initialize/initComment.js';
 
+// Set API key in localStorage for apiClient to use
 localStorage.setItem('apiKey', import.meta.env.VITE_NOROFF_API_KEY);
 document.addEventListener('auth:changed', () => {
   updateAuthUI();
@@ -28,20 +27,20 @@ function navigateTo(url) {
   router();
 }
 document.addEventListener('click', (e) => {
-  // logout
+  // createPost button
   if (e.target.closest('[data-open-create-post]')) {
     e.preventDefault();
     navigateTo('/createPost');
     return;
   }
-
+  //logout button
   if (e.target.closest('#logout-button')) {
     e.preventDefault();
     logoutUser();
     navigateTo('/');
     return;
   }
-
+  //own profile button / covenprofile
   if (e.target.closest('[data-open-own-profile]')) {
     e.preventDefault();
     navigateTo('/ownProfile');
@@ -54,6 +53,7 @@ document.addEventListener('click', (e) => {
     navigateTo(link.getAttribute('href'));
   }
 
+  //familiars button
   if (e.target.closest('[data-open-familiars]')) {
     e.preventDefault();
     navigateTo('/familiars');

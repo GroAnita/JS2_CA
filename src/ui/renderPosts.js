@@ -5,7 +5,6 @@ import { deletePost } from '../services/postFetchService.js';
 import showToast from './showToast.js';
 import { router } from '../router/router.js';
 import { getAvatar } from './getAvatar.js';
-import { createComment } from '../services/commentService.js';
 
 /**
  * Renders a list of posts in to the #posts container.
@@ -263,27 +262,6 @@ export async function renderPosts(
     postsContainer.appendChild(article);
   }
 }
-
-document.addEventListener('submit', async (event) => {
-  const commentForm = event.target.closest('[data-comment-form]');
-  if (!commentForm) return;
-  event.preventDefault();
-
-  const postId = commentForm.dataset.postId;
-  const commentText = commentForm.comment.value.trim();
-  if (!commentText) return;
-  try {
-    await createComment(postId, commentText);
-    console.log('postId:', postId);
-    console.log('comment:', commentText);
-
-    commentForm.reset();
-    showToast('Whisper sent!', 'success');
-  } catch (error) {
-    console.error('Failed to create comment:', error);
-    showToast('Failed to send whisper. Please try again.', 'error');
-  }
-});
 
 /**
  * Closes the edit/delete menu if user clicks outside of it.
