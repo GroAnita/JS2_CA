@@ -4,7 +4,7 @@ A mystical social media platform where users can share spells, follow other witc
 
 Built as a **Single Page Application(SPA)** using Noroffs API.
 
-## Link to live demo :
+## Link to live demo:
 
 [Live demo:](https://groanita.github.io/JS2_CA/)
 
