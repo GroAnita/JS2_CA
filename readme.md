@@ -75,6 +75,8 @@ Built as a **Single Page Application (SPA)** using the Noroff API.
 
 ## Architecture Overview
 
+```
+
 main.js
 |
 ↓
@@ -101,6 +103,8 @@ src/
 ├── ui/ → UI logic (toasts, handlers)
 ├── router/ → SPA router
 └── main.js → App entry point
+
+```
 
 ## Getting Started
 
