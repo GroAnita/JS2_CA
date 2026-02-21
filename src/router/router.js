@@ -34,7 +34,7 @@ import searchOverlay from '../ui/searchOverlay.js';
 
 /**
  * A static route map for simple view rendering.
- * Dynamic routes are handled separately in the router function.
+ * Dynamic routes are handled separately in my router function.
  */
 const routes = {
   '/': Home,
@@ -55,7 +55,10 @@ export async function router() {
   // Layout
   document.getElementById('sidenav').innerHTML = SideNav();
   document.getElementById('header').innerHTML = Header();
-  document.body.appendChild(searchOverlay());
+
+  if (!document.getElementById('search-overlay')) {
+    document.body.appendChild(searchOverlay());
+  }
   if (path.startsWith('/profiles/') && path !== '/profiles') {
     const name = path.split('/')[2];
 
