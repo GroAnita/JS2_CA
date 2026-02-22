@@ -58,6 +58,9 @@ I use this in my caching of my unsplash images, I read about this and needed som
 **JSDoc**
 Most recently I have used Ai to help me with what to put in @params in JSDocs on a couple of functions, untill I got more of a grasp on it.
 
+**Event handling**
+in my comment on posts system I got an issue where comments were being submitted 3 times. I did use AI to help me debug this, and it was very anoying when it suggested 1 console.log the perfect spot and the problem revealed itself immediately... I had initialized it 3 places.. that was a long night.
+
 ### Reflection
 
 As a beginner I sometimes feel very unsure if my solutions are correct. AI is a valued learning support too for me.
@@ -67,6 +70,6 @@ It helps me get at better understanding of:
 * make deeper meaning of concepts I am using and learning
 * and definetly improve my problem solving skills
 
-So in the end I am using AI as a support to my learning , not to replace my own thoughts and decisions.
+So in the end I am using AI as a support to my learning , not to replace my own thoughts and decisions. I always make sure to understand ( I have written an entire notebook...) implement it how I want it and to test that it works myself.
 
 
