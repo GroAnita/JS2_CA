@@ -8,10 +8,8 @@ Built as a **Single Page Application (SPA)** using the Noroff API.
 
 [View live demo](https://groanita.github.io/JS2_CA/)
 
-```bash
 <img width="1429" height="776" alt="Screenshot 2026-02-22 at 11 04 37" src="https://github.com/user-attachments/assets/5b5b88fd-515e-4a14-8c77-99296e70affc" />
 
-```
 
 ## Features
 
