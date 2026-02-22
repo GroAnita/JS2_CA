@@ -35,7 +35,6 @@ export function initSearch() {
   // search input
   input.addEventListener('input', async () => {
     const query = input.value.trim();
-    console.log('user typed:', query);
     if (!query) {
       results.innerHTML = '';
       return;
@@ -45,7 +44,6 @@ export function initSearch() {
       return;
     }
     try {
-      console.log('searching for posts...');
       const response = await fetchPosts(`&search=${encodeURIComponent(query)}`);
       const posts = response.data || [];
 

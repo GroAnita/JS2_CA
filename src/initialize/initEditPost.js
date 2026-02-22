@@ -4,14 +4,12 @@ import showToast from '../ui/showToast.js';
 import { router } from '../router/router.js';
 
 export async function initEditPost(postId) {
-  console.log('Initializing edit post view for post ID:', postId);
   if (!postId || isNaN(postId)) {
     console.error('Invalid post ID:', postId);
     return;
   }
 
   try {
-    console.log('Fetching post with ID:', postId);
     const response = await fetchSinglePost(postId);
     const post = response.data;
 

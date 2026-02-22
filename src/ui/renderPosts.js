@@ -285,7 +285,6 @@ document.addEventListener('click', (event) => {
 document.addEventListener('click', async (event) => {
   const deleteButton = event.target.closest('.delete-post');
   if (!deleteButton) return;
-  console.log('delete button clicked');
 
   const postId = deleteButton.dataset.postId;
   if (!confirm('Are you sure you want to delete this post?')) return;

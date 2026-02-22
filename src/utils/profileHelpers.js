@@ -30,20 +30,5 @@ export async function prepareProfilesForSidebar(profiles) {
       };
     })
   );
-  return preparedProfiles.slice(0, 6); // Limit to the first 6 profiles
+  return preparedProfiles.slice(0, 6); // Limits to the first 6 profiles
 }
-
-/**  return Promise.all(
-    profiles.map(async (profile) => {
-      if (profile.avatar?.url) return profile;
-      const avatarUrl = await getRandomAvatar();
-      return {
-        ...profile,
-        avatar: {
-          url: avatarUrl,
-          alt: `${profile.name} avatar`,
-        },
-      };
-    })
-  );
-}*/

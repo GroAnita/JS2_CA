@@ -5,12 +5,19 @@ const FALLBACK_AVATAR_URL = new URL(
 ).href;
 if (!ACCESS_KEY) {
   console.warn(
-    'Unsplash Access Key is not set. Please set VITE_UNSPLASH_ACCESS_KEY in your environment variables.'
+    'Unsplash Access Key is not set. Please set VITE_UNSPLASH_ACCESS_KEY in the environment variables.'
   );
 }
 let cachedAvatar = null;
 let cachedPostImage = new Map();
 
+/**
+ * Gets a random image from Unsplash to use.
+ * uses caching to avoid more api calls than needed.
+ * secure .env for the access key.
+ * @async
+ * @returns {Promise<string>} URL of image.
+ */
 export async function getRandomAvatar() {
   if (cachedAvatar) return cachedAvatar;
   try {
@@ -27,6 +34,13 @@ export async function getRandomAvatar() {
   }
 }
 
+/**
+ * same as above but for the posts.
+ * @async
+ * @param {string} postId - The ID of the post.
+ * @param {string} [query='fantasy'] - The search query for the image.
+ * @returns {Promise<string>} URL of image.
+ */
 export async function getRandomPostImage(postId, query = 'fantasy') {
   if (cachedPostImage.has(postId)) {
     return cachedPostImage.get(postId);

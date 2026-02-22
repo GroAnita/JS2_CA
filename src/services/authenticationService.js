@@ -46,10 +46,6 @@ export function logoutUser() {
 
 export async function createApiKey(accessToken) {
   try {
-    console.log(
-      'Creating API key with token:',
-      accessToken ? 'Token exists' : 'No token'
-    );
     const response = await fetch(
       'https://v2.api.noroff.dev/auth/create-api-key',
       {
@@ -62,7 +58,6 @@ export async function createApiKey(accessToken) {
     );
 
     const result = await response.json();
-    console.log('API key response:', response.status, result);
 
     if (!response.ok) {
       throw new Error(
@@ -72,7 +67,6 @@ export async function createApiKey(accessToken) {
 
     const apiKey = result.data.key;
     localStorage.setItem('apiKey', apiKey);
-    console.log('API key saved to localStorage');
     return apiKey;
   } catch (error) {
     console.error('Failed to create API key:', error);
