@@ -8,7 +8,7 @@ JS2_CA
 
 ## Date range
 
-January 19th to February 22nd
+January 19th to February 22nd.
 
 As I started this project before we new about this AI Log, I dont have exact dates or prompts. But I will try to remember most of it.
 
@@ -64,12 +64,11 @@ in my comment on posts system I got an issue where comments were being submitted
 ### Reflection
 
 As a beginner I sometimes feel very unsure if my solutions are correct. AI is a valued learning support too for me.
-It helps me get at better understanding of: 
-* console errors
-* confirming my design decisions
-* make deeper meaning of concepts I am using and learning
-* and definetly improve my problem solving skills
+It helps me get at better understanding of:
+
+- console errors
+- confirming my design decisions
+- make deeper meaning of concepts I am using and learning
+- and definetly improve my problem solving skills
 
 So in the end I am using AI as a support to my learning , not to replace my own thoughts and decisions. I always make sure to understand ( I have written an entire notebook...) implement it how I want it and to test that it works myself.
-
-
